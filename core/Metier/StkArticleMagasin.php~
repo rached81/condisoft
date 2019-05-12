@@ -1,0 +1,52 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * StkArticleMagasin
+ *
+ * @ORM\Table(name="stk_article_magasin", indexes={@ORM\Index(name="IDX_2D2259837E354607", columns={"art_code"})})
+ * @ORM\Entity
+ */
+class StkArticleMagasin
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mag_code", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $magCode;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="artmag_stockAlerte", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $artmagStockalerte;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="artmag_stockSecurite", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $artmagStocksecurite;
+
+    /**
+     * @var \StkArticle
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="StkArticle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="art_code", referencedColumnName="art_code")
+     * })
+     */
+    private $artCode;
+
+
+}
+

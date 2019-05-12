@@ -1,0 +1,1 @@
+<div id="etatstk"> </div>

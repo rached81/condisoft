@@ -1,0 +1,30 @@
+.transformentet{
+  width:120px;
+  text-align: right;
+}
+
+.marbutton{
+    margin-bottom: 2px !important;
+}
+
+.page-header{
+    margin-top: 2px !important;
+}
+
+
+.inputlike {
+     
+    padding: 4px;
+    font-size: 13px;
+    line-height: 18px;
+    color: #808080;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.inputlike:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}

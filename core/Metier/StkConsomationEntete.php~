@@ -1,0 +1,501 @@
+<?php
+
+
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * StkConsomationEntete
+ *
+ * @ORM\Table(name="stk_consomation_entete", indexes={@ORM\Index(name="fk_stk_consommation_entete_stk_affectation_analityque1_idx", columns={"cons_affectationCode"}), @ORM\Index(name="fk_stk_consommation_entete_stk_affectation_type1_idx", columns={"cons_affectationTypeCode"}), @ORM\Index(name="IDX_84978313ED098EC4", columns={"cons_etatCode"})})
+ * @ORM\Entity
+ */
+class StkConsomationEntete
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cons_code", type="string", length=10, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $consCode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cons_exercice", type="integer", nullable=true)
+     */
+    private $consExercice;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cons_magCode", type="integer", nullable=true)
+     */
+    private $consMagcode;
+    
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="cons_type", type="integer", nullable=true)
+     */
+    private $consType;
+    
+    
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="cons_motif", type="integer", nullable=true)
+     */
+    private $consMotif;
+    
+    
+    
+     /**
+     * @var integer
+     *
+     * @ORM\Column(name="cons_observation", type="text", nullable=true)
+     */
+    private $consObservation;
+    
+    
+      /**
+     * @var \StkFournisseur
+     *
+     * @ORM\ManyToOne(targetEntity="StkFournisseur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cons_clientCode", referencedColumnName="frs_code")
+     * })
+     */
+    private $consClientcode;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cons_date", type="datetime", nullable=true)
+     */
+    private $consDate;
+    
+    
+      /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="cons_datedem", type="datetime", nullable=true)
+     */
+    private $consDatedem;
+
+    /**
+     * @var \StkAffectationAnalityque
+     *
+     * @ORM\ManyToOne(targetEntity="StkAffectationAnalityque")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cons_affectationCode", referencedColumnName="affectation_code")
+     * })
+     */
+    private $consAffectationcode;
+
+    /**
+     * @var \StkAffectationType
+     *
+     * @ORM\ManyToOne(targetEntity="StkAffectationType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cons_affectationTypeCode", referencedColumnName="afftype_code")
+     * })
+     */
+    private $consAffectationtypecode;
+
+    /**
+     * @var \StkEtat
+     *
+     * @ORM\ManyToOne(targetEntity="StkEtat")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cons_etatCode", referencedColumnName="etat_code")
+     * })
+     */
+    private $consEtatcode;
+
+   
+       /**
+     * @var \StkArticle
+     *
+     * @ORM\ManyToOne(targetEntity="StkArticle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cons_artCode", referencedColumnName="art_code")
+     * })
+     */
+    
+    private $consArtcode;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->consArtcode = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+    /**
+     * Get consCode
+     *
+     * @return string
+     */
+    public function getConsCode()
+    {
+        return $this->consCode;
+    }
+
+    /**
+     * Set consExercice
+     *
+     * @param integer $consExercice
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsExercice($consExercice)
+    {
+        $this->consExercice = $consExercice;
+
+        return $this;
+    }
+
+    /**
+     * Get consExercice
+     *
+     * @return integer
+     */
+    public function getConsExercice()
+    {
+        return $this->consExercice;
+    }
+    
+    
+     /**
+     * Set consCode
+     *
+     * @param integer $consCode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsCode($consCode)
+    {
+        $this->consCode = $consCode;
+
+        return $this;
+    }
+
+    /**
+     * Set consMagcode
+     *
+     * @param integer $consMagcode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsMagcode($consMagcode)
+    {
+        $this->consMagcode = $consMagcode;
+
+        return $this;
+    }
+
+    /**
+     * Get consMagcode
+     *
+     * @return integer
+     */
+    public function getConsMagcode()
+    {
+        return $this->consMagcode;
+    }
+    
+        /**
+     * Get consClientcode
+     *
+     * @return \StkFournisseur
+     */
+    public function getConsClientcode()
+    {
+        return $this->consClientcode;
+    }
+    
+    
+    /**
+     * Set consClientcode
+     *
+     * @param \StkFournisseur $consClientcode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsClientcode(\StkFournisseur $consClientcode)
+    {
+        $this->consClientcode = $consClientcode;
+
+        return $this;
+    }
+    
+    
+     /**
+     * Set consType
+     *
+     * @param integer $consType
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsType($consType)
+    {
+        $this->consType = $consType;
+
+        return $this;
+    }
+
+    /**
+     * Get consType
+     *
+     * @return integer
+     */
+    public function getConsType()
+    {
+        return $this->consType;
+    }
+    
+    
+    
+    
+      /**
+     * Set consMotif
+     *
+     * @param integer $consMotif
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsMotif($consMotif)
+    {
+        $this->consMotif = $consMotif;
+
+        return $this;
+    }
+
+    /**
+     * Get consMotif
+     *
+     * @return integer
+     */
+    public function getConsMotif()
+    {
+        return $this->consMotif;
+    }
+    
+    
+    
+    
+     /**
+     * Set consObservation
+     *
+     * @param integer $consObservation
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsObservation($consObservation)
+    {
+        $this->consObservation = $consObservation;
+
+        return $this;
+    }
+
+    /**
+     * Get consObservation
+     *
+     * @return text
+     */
+    public function getConsObservation()
+    {
+        return $this->consObservation;
+    }
+    
+
+    /**
+     * Set consDate
+     *
+     * @param \DateTime $consDate
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsDate($consDate)
+    {
+        $this->consDate = $consDate;
+
+        return $this;
+    }
+
+    /**
+     * Get consDate
+     *
+     * @return \DateTime
+     */
+    public function getConsDate()
+    {
+        return $this->consDate;
+    }
+    
+    
+        /**
+     * Set consDatedem
+     *
+     * @param \DateTime consDatedem
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsDatedem($consDatedem)
+    {
+        $this->consDatedem = $consDatedem;
+
+        return $this;
+    }
+
+    /**
+     * Get consDatedem
+     *
+     * @return \DateTime
+     */
+    public function getConsDatedem()
+    {
+        return $this->consDatedem;
+        
+    }
+    
+    
+    
+
+    /**
+     * Set consAffectaioncode
+     *
+     * @param \StkAffectationAnalityque $consAffectaioncode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsAffectationcode(\StkAffectationAnalityque $consAffectationcode = null)
+    {
+        $this->consAffectationcode = $consAffectationcode;
+
+        return $this;
+    }
+
+    /**
+     * Get consAffectaioncode
+     *
+     * @return \StkAffectationAnalityque
+     */
+    public function getConsAffectaioncode()
+    {
+        return $this->consAffectaioncode;
+    }
+
+    /**
+     * Set consAffectationtypecode
+     *
+     * @param \StkAffectationType $consAffectationtypecode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsAffectationtypecode(\StkAffectationType $consAffectationtypecode = null)
+    {
+        $this->consAffectationtypecode = $consAffectationtypecode;
+
+        return $this;
+    }
+
+    /**
+     * Get consAffectationtypecode
+     *
+     * @return \StkAffectationType
+     */
+    public function getConsAffectationtypecode()
+    {
+        return $this->consAffectationtypecode;
+    }
+
+    /**
+     * Set consEtatcode
+     *
+     * @param \StkEtat $consEtatcode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsEtatcode(\StkEtat $consEtatcode = null)
+    {
+        $this->consEtatcode = $consEtatcode;
+
+        return $this;
+    }
+
+    /**
+     * Get consEtatcode
+     *
+     * @return \StkEtat
+     */
+    public function getConsEtatcode()
+    {
+        return $this->consEtatcode;
+    }
+
+    /**
+     * Add consArtcode
+     *
+     * @param \StkArticle $consArtcode
+     *
+     * @return StkConsomationEntete
+     */
+    public function addConsArtcode(\StkArticle $consArtcode)
+    {
+        $this->consArtcode[] = $consArtcode;
+
+        return $this;
+    }
+
+    /**
+     * Remove consArtcode
+     *
+     * @param \StkArticle $consArtcode
+     */
+    public function removeConsArtcode(\StkArticle $consArtcode)
+    {
+        $this->consArtcode->removeElement($consArtcode);
+    }
+
+    /**
+     * Get consArtcode
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getConsArtcode()
+    {
+        return $this->consArtcode;
+    }
+
+    /**
+     * Get consAffectationcode
+     *
+     * @return \StkAffectationAnalityque
+     */
+    public function getConsAffectationcode()
+    {
+        return $this->consAffectationcode;
+    }
+
+    /**
+     * Set consArtcode
+     *
+     * @param \StkArticle $consArtcode
+     *
+     * @return StkConsomationEntete
+     */
+    public function setConsArtcode(\StkArticle $consArtcode = null)
+    {
+        $this->consArtcode = $consArtcode;
+
+        return $this;
+    }
+}
