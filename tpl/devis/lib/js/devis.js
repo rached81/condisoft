@@ -9,7 +9,6 @@ $(document).ready(function () {
 
     $("#get_data_form").validate({
         rules: {
-
         }
     })
 
@@ -103,7 +102,6 @@ function inti_dialog_non_edit(param) {
 
     $("#dialogs").dialog({
         buttons: {
-
             "Annuler": function () {
                 $(this).dialog("close");
             },
@@ -224,19 +222,19 @@ function populate_list(data) {
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td >" + values.proddetailArticleCode.artDesignation + "</td>";
-                 html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' contenteditable='true' class='itemart inputdecorator' >" + values.proddetailQteDevis + "</td>";
                 html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart ' >" + values.proddetailPrixUniaireDeviseDevis + "</td>";
                 html += "<td id='proddetailTva' class='itemart' >" + values.proddetailTvaDevis.tvaDesignation + "</td>";
-                
-                
+
+
                 var pt = parseFloat(values.proddetailPrixUniaireDeviseDevis) * parseFloat(values.proddetailQteDevis);
                 var ptttc = pt + ((parseFloat(values.proddetailTvaDevis.tvaCode) * pt) / 100);
                 html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc) + "</td>";
                 html += "</tr>";
 
                 $("#dataartlineobject").append(html);
-               
+
             })
 
             $("#addform").attr("action", "gen_data");
@@ -293,9 +291,9 @@ function populate_list(data) {
             })
 
             $("#prodDevise").val(data.data[0].prodDevise.deviseCode).trigger("change");
-               $("#prodCommerciale").val(data.data[0].prodCommerciale.idutil).trigger("change");
-             $("#prodDevisep").html(data.data[0].prodDevise.deviseLibelle);
-              $("#prodCommercialep").html(data.data[0].prodCommerciale.utinom);
+            $("#prodCommerciale").val(data.data[0].prodCommerciale.idutil).trigger("change");
+            $("#prodDevisep").html(data.data[0].prodDevise.deviseLibelle);
+            $("#prodCommercialep").html(data.data[0].prodCommerciale.utinom);
             $("#dataartlineobject").html("");
             $("#dataartlineobjectp").html("");
 
@@ -308,7 +306,7 @@ function populate_list(data) {
                 var html = "<tr class='dataDet'>";
                 html += "<td id='proddetailArticleCode' class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td >" + values.proddetailArticleCode.artDesignation + "</td>";
-                  html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart'>" + values.proddetailQteDevis + "</td>";
                 html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart'>" + values.proddetailPrixUniaireDeviseDevis + "</td>";
                 html += "<td id='proddetailTva' class='itemart'>" + values.proddetailTvaDevis.tvaDesignation + "</td>";
@@ -387,25 +385,35 @@ function ajout_article_data() {
             execp = true;
         }
     })
+    
+    var param = {};
+    
+    param.artCode = $("#proddetailArticleCodea").val();
 
-    if (!execp) {
-        var selectmap = $("#proddetailArticleCodea").select2('data');
-        var selectmaptva = $("#proddetailTvaDevisa").select2('data');
+    get_ajax_data("/article/asyn_get_article", param, function (data) {
 
-        var html = "<tr class='dataDet'>";
-        html += "<td id='proddetailArticleCode' class='itemart'>" + $("#proddetailArticleCodea").val() + "</td>";
-        html += "<td >" + selectmap[0].text + "</td>";
-        html += "<td id='proddetailQteDevis' class='itemart'>" + $("#proddetailQteDevisa").val() + "</td>";
-        html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart'>" + $("#proddetailPrixUniaireDeviseDevisa").val() + "</td>";
-        html += "<td id='proddetailTvaDevis' class='itemart'>" + selectmaptva[0].id + "</td>";
-        var ptt = parseFloat($("#proddetailQteDevisa").val() * $("#proddetailPrixUniaireDeviseDevisa").val());
-        var pttc = ptt + parseFloat((ptt * parseFloat(selectmaptva[0].id)) / 100)
-        html += "<td id='proddetailTtc'  >" + pttc + "</td>";
-        html += '<td><button  class="btn btn-danger btn-xs delart"><span class="glyphicon glyphicon-remove-circle"></span></button></td>';
-        html += "</tr>";
+        if (!execp) {
+            var selectmap = $("#proddetailArticleCodea").select2('data');
+            var selectmaptva = $("#proddetailTvaDevisa").select2('data');
 
-        $("#dataartlineobject").append(html)
-    }
+            var html = "<tr class='dataDet'>";
+            html += "<td id='proddetailArticleCode' class='itemart'>" + $("#proddetailArticleCodea").val() + "</td>";
+            html += "<td >" + selectmap[0].text + "</td>";
+            
+             html += "<td >" +data.data.data[0].g_artUnite+ "</td>";
+            html += "<td id='proddetailQteDevis' class='itemart'>" + $("#proddetailQteDevisa").val() + "</td>";
+            html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart'>" + $("#proddetailPrixUniaireDeviseDevisa").val() + "</td>";
+            html += "<td id='proddetailTvaDevis' class='itemart'>" + selectmaptva[0].id + "</td>";
+            var ptt = parseFloat($("#proddetailQteDevisa").val() * $("#proddetailPrixUniaireDeviseDevisa").val());
+            var pttc = ptt + parseFloat((ptt * parseFloat(selectmaptva[0].id)) / 100)
+            html += "<td id='proddetailTtc'  >" + pttc + "</td>";
+            html += '<td><button  class="btn btn-danger btn-xs delart"><span class="glyphicon glyphicon-remove-circle"></span></button></td>';
+            html += "</tr>";
+
+            $("#dataartlineobject").append(html)
+        }
+        
+    })
 
 }
 
@@ -419,7 +427,7 @@ function getdetailObjectgenbc() {
     $(".dataDet").each(function () {
 
         if ((!$.isNumeric($(this).find("#proddetailQteDevis").html())) || (!$.isNumeric($(this).find("#proddetailPrixUniaireDeviseDevis").html()))) {
-             valid = false
+            valid = false
         }
 
         var obj = {};
@@ -431,8 +439,8 @@ function getdetailObjectgenbc() {
         })
         objs.push(obj);
     })
-   
-    
+
+
     if (valid) {
         return objs;
     } else {
@@ -462,7 +470,7 @@ function gen_data() {
 
     param = getFromObj("#" + "addform")
     var obj = getdetailObjectgenbc();
- 
+
     if (obj !== false) {
         param.prodCodeDeviBcs = obj;
         param.mag = $("#mag").val()
