@@ -27,8 +27,22 @@ $(document).ready(function () {
         reset_form();
         $("#addform").attr("action", "ajout_fournisseur");
         edit_mode();
+        $("#frsTypecode").val(1).trigger("change")
+        $("#frsTypecode").select2("enable", false)
         inti_dialog();
     })
+    
+  
+    
+     $("#btn_nouveau_client").click(function () {
+        reset_form();
+        $("#addform").attr("action", "ajout_fournisseur");
+        $("#frsTypecode").val(2).trigger("change")
+        $("#frsTypecode").select2("enable", false)
+        edit_mode();
+        inti_dialog();
+    })
+
 
     $("#frsImage").change(function () {
         readURLimage(this, "#fournisseurimage");

@@ -32,6 +32,7 @@ class View {
         "vendors/bootstrap/dist/js/bootstrap.min",
         "jquery.metadata",
         "jquery.validate.min",
+         "bootstrap-table.min",
         "messages_fr",
         "additional-methods.min",
         "jquery.livequery",
@@ -67,7 +68,11 @@ class View {
         "vendors/google-code-prettify/src/prettify",
         "vendors/datatables.net/js/jquery.dataTables.min",
         "custom",
-        "JsBarcode.all"
+        "JsBarcode.all",
+        "tableExport.min",
+        "jspdf.min",
+        "jspdf.plugin.autotable",
+        "bootstrap-table-export.min"
         
     );
     public static $css = array(
@@ -76,6 +81,7 @@ class View {
         "vendors/font-awesome/css/font-awesome.min",
         "vendors/google-code-prettify/bin/prettify.min",
         "jquery-ui",
+         "bootstrap-table.min",
         "jstree",
         "tipsy",
         "dataTables.bootstrap.min",
