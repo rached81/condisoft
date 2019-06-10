@@ -2,6 +2,6 @@
   <div class="form-group">
       <input type="text" name="prodCodeDeviBc" class="form-control input-sm" id="prodCodeDeviBcr" placeholder="Code Devis">
   </div>
-  <button type="submit" class="btn btn-primary btn-sm">Recherche</button>
+  <button type="submit" class="btn btn-primary btn-sm">Recherche</button> <button type="submit" class="btn btn-primary btn-sm">Mise à jour</button>
   <button type="button"   id="btn_nouveau_data" class="btn btn-success btn-sm">Nouveau</button>
 </form>

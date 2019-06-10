@@ -2,7 +2,7 @@
   <div class="form-group">
       <input type="text" name="transCode" class="form-control input-sm" id="transCoder" placeholder="Code Transfert">
   </div>
-  <button type="submit" class="btn btn-primary btn-sm">Recherche</button>
+  <button type="submit" class="btn btn-primary btn-sm">Recherche</button> <button type="submit" class="btn btn-primary btn-sm">Mise à jour</button>
   <button dr="creationtrans" type="button" id="btn_nouveau_trans" class="btn btn-success btn-sm">Nouvelle demande de transfert</button>
   
 </form>

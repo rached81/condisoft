@@ -2,6 +2,6 @@
   <div class="form-group">
       <input type="text" name="entCode" class="form-control input-sm" id="entCoder" placeholder="Code , Désignation article">
   </div>
-  <button type="submit" class="btn btn-primary btn-sm">Recherche</button>
+  <button type="submit" class="btn btn-primary btn-sm">Recherche</button> <button type="submit" class="btn btn-primary btn-sm">Mise à jour</button>
   <button dr="creationentre" type="button" id="btn_nouveau_entree" class="btn btn-success btn-sm">Nouveau</button>
 </form>
