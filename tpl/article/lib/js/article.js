@@ -157,7 +157,7 @@ function edit_mode() {
     $("[editmode]").each(function () {
         if ($(this).hasClass('select2-hidden-accessible')) {
               console.log($(this).attr("id"))
-           searchAuto(this)
+              searchAuto(this)
              $(this).select2('enable', [true])
         } else {
             $(this).removeAttr("disabled");
