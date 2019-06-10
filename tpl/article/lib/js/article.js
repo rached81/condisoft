@@ -3,14 +3,13 @@ $(document).ready(function () {
     window.modul = "article";
     $("#get_article_form").validate({
         rules: {
-
         }
     })
-    
-    $("#existant").change(function(){
+
+    $("#existant").change(function () {
         article_mode()
     })
-    
+
     article_mode()
 
     $("#addform").validate({
@@ -46,7 +45,7 @@ $(document).ready(function () {
     })
 
     $("#artEtatCode").select2()
-    
+
     $("#artClass").select2()
 
     $("#dialogs").hide();
@@ -55,8 +54,8 @@ $(document).ready(function () {
         $("#artDatecreation").val($("#artDatecreationh").val())
         $("#liststk").html("")
         $("#listmvt").html("")
-         $("#existant").show();
-         article_mode()
+        $("#existant").show();
+        article_mode()
         get_ajax_data("/article/asyn_get_artuniqcode", {}, function (data) {
             reset_form();
             inti_code_maker();
@@ -64,6 +63,7 @@ $(document).ready(function () {
             edit_mode();
             inti_dialog();
             $("#uniqCode").val(data.data);
+
         });
     })
 
@@ -141,23 +141,36 @@ $(document).ready(function () {
 })
 
 function non_edit_mode() {
-    $("[editmode]").attr("disabled", "disabled");
+    $("[editmode]").each(function () {
+        if ($(this).select2()) {
+             $(this).select2("disable")
+        } else {
+            $(this).attr("disabled", "disabled")
+        }
+    });
 
 }
 
 function edit_mode() {
-    $("[editmode]").removeAttr("disabled");
-
+    
+    $("[editmode]").each(function () {
+        if ($(this).select2()) {
+             $(this).select2("enable")
+        } else {
+            $(this).removeAttr("disabled");
+        }
+    });
+   
 }
 
-function article_mode(){
-     if (!$("#existant").is(":checked")) {
-           $("#artCode").attr("readonly","readonly")
-            generate_code()         
-        }else{
-             $("#artCode").removeAttr("readonly")
-              $("#artCode").val("").focus()
-        }
+function article_mode() {
+    if (!$("#existant").is(":checked")) {
+        $("#artCode").attr("readonly", "readonly")
+        generate_code()
+    } else {
+        $("#artCode").removeAttr("readonly")
+        $("#artCode").val("").focus()
+    }
 }
 
 function inti_code_maker() {
@@ -169,7 +182,7 @@ function inti_code_maker() {
     })
 
     $("#artCategoriecode").change(function () {
-          if (!$("#existant").is(":checked")) {
+        if (!$("#existant").is(":checked")) {
             generate_code()
         }
     })
@@ -188,7 +201,7 @@ function generate_code() {
 }
 
 function reset_form() {
-     console.log("form");
+    console.log("form");
     $("#artCode").val("");
     $("#artCategoriecode").val("").trigger("change");
     $("#frsCode").val("").trigger("change");
@@ -207,7 +220,6 @@ function inti_dialog_non_edit(param) {
 
     $("#dialogs").dialog({
         buttons: {
-
             "Annuler": function () {
                 $(this).dialog("close");
             },
@@ -219,12 +231,12 @@ function inti_dialog_non_edit(param) {
 
                         var inc = 0
                         var artcode = $("#artCode").val();
-                         var artdes = $("#artDesignation").val();
+                        var artdes = $("#artDesignation").val();
                         var fornum = parseInt($("#nbCodebare").val());
 
                         for (count = 0; count < fornum; count++) {
                             var nameide = "bare" + inc
-                            $("#printbarecode").append('<div style="margin-left:10px;font-size:22   px;">'+artdes+'</div>')
+                            $("#printbarecode").append('<div style="margin-left:10px;font-size:22   px;">' + artdes + '</div>')
                             $("#printbarecode").append('<svg id="' + nameide + '"></svg>')
                             $("#" + nameide).JsBarcode(artcode);
                             $("#printbarecode").append('<br><div class="barecodepaging"></div>')
@@ -291,13 +303,13 @@ function populate_list(data) {
     modifier.class = "modifierbtn"
     modifier.dr = "updateart"
     modifier.fnct = function (param) {
-         $("#existant").hide();
-         if($("#existant").is(":checked")){
-             $("#existant").removeAttr("checked")
-             $("#artCode").attr("readonly","readonly")
-         }
-             
-         
+        $("#existant").hide();
+        if ($("#existant").is(":checked")) {
+            $("#existant").removeAttr("checked")
+            $("#artCode").attr("readonly", "readonly")
+        }
+
+
         get_ajax_data("/article/asyn_get_article", param, function (data) {
             reset_form();
             edit_mode();
@@ -312,7 +324,7 @@ function populate_list(data) {
             $("#artDescription").val(data.data.data[0].g_artDescription);
             $("#artDelaislivraison").val(data.data.data[0].g_artDelaislivraison)
             $("#artStockMinimale").val(data.data.data[0].g_artStockminimale)
-              $("#artPrix").val(data.data.data[0].g_artPrix)
+            $("#artPrix").val(data.data.data[0].g_artPrix)
             $("#artTva").val(data.data.data[0].g_artTva)
             $("#frsArtref").val(data.data.data[0].p_frsArtref)
             setimage(path_base + "/" + "imgs" + "/" + data.data.data[0].g_artImage, "#articleimage")
@@ -327,18 +339,22 @@ function populate_list(data) {
     consult.attr = ["g_artCode"]
     consult.class = "consultbtn"
     consult.fnct = function (param) {
-           $("#existant").hide();
-         if($("#existant").is(":checked")){
-             $("#existant").removeAttr("checked")
-             $("#artCode").attr("readonly","readonly")
-         }
-             
+        $("#existant").hide();
+        if ($("#existant").is(":checked")) {
+            $("#existant").removeAttr("checked")
+            $("#artCode").attr("readonly", "readonly")
+        }
+
         get_ajax_data("/article/asyn_get_article", param, function (data) {
-            reset_form();
+
             non_edit_mode()
+
+            reset_form();
+
+
             $("#artCode").val(data.data.data[0].g_artCode);
             $("#artCategoriecode").val(data.data.data[0].i_catartCode).trigger("change")
-                  $("#artClass").val(data.data.data[0].g_artClass).trigger("change")
+            $("#artClass").val(data.data.data[0].g_artClass).trigger("change")
             $("#frsCode").val(data.data.data[0].p_frs_code).trigger("change");
             $("#artDesignation").val(data.data.data[0].g_artDesignation);
             $("#artDescription").val(data.data.data[0].g_artDescription);
@@ -347,10 +363,10 @@ function populate_list(data) {
             }
             $("#artDelaislivraison").val(data.data.data[0].g_artDelaislivraison)
             $("#artStockMinimale").val(data.data.data[0].g_artStockminimale)
-            
-             $("#artPrix").val(data.data.data[0].g_artPrix)
+
+            $("#artPrix").val(data.data.data[0].g_artPrix)
             $("#artTva").val(data.data.data[0].g_artTva)
-            
+
             $("#frsArtref").val(data.data.data[0].p_frsArtref)
 
             setimage(path_base + "/" + "imgs" + "/" + data.data.data[0].g_artImage, "#articleimage")
@@ -360,7 +376,7 @@ function populate_list(data) {
         });
 
 
- 
+
         var params = {}
         params = getFromObj("." + "profile")
         params.art = param.g_artCode
