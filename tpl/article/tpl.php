@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="artUnite" class="col-md-12 control-label">Unité</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="artUnite" id="artUnite" placeholder="Désignation">
+                                        <input type="text" editmode   class="form-control" name="artUnite" id="artUnite" placeholder="Désignation">
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <label for="artEtatCode" class="col-md-12 control-label">Etat de l'article</label>
                                     <div class="col-sm-12">
                                         <select required="required" editmode type="text" class="form-control" name="artEtatCode" id="artEtatCode" placeholder="Etat de l'article">
-                                            <option value="11">Article actif</option>
+                                            <option selected="" value="11">Article actif</option>
                                             <option value="12">Article inactif</option>
                                         </select>
                                     </div>
@@ -116,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="artDelaislivraison" class="col-md-12 control-label">Délais de production moyen</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="artDelaislivraison" id="artDelaislivraison" placeholder="Délais de livraison">
+                                        <input type="text" editmode  class="form-control" name="artDelaislivraison" id="artDelaislivraison" placeholder="Délais de livraison">
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <label for="frsArtref" class="col-md-12 control-label">Référence constructeur</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="frsArtref" id="frsArtref" placeholder="Ref.">
+                                        <input type="text" editmode   class="form-control" name="frsArtref" id="frsArtref" placeholder="Ref.">
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                                 <div class="form-group">
                                     <label for="artStockMinimale" class="col-md-12 control-label">Stock de reserve</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="artStockMinimale" id="artStockMinimale" placeholder="Stk reserve">
+                                        <input type="text" editmode   class="form-control" name="artStockMinimale" id="artStockMinimale" placeholder="Stk reserve">
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,7 @@
                                 <div class="form-group">
                                     <label for="artPrix" class="col-md-12 control-label">Prix</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="artPrix" id="artPrix" placeholder="Prix unitaire">
+                                        <input type="text" editmode   class="form-control" name="artPrix" id="artPrix" placeholder="Prix unitaire">
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                 <div class="form-group">
                                     <label for="artTva" class="col-md-12 control-label">TVA</label>
                                     <div class="col-sm-12">
-                                        <input type="text" editmode required="required"  class="form-control" name="artTva" id="artTva" placeholder="Tva article">
+                                        <input type="text" editmode class="form-control" name="artTva" id="artTva" placeholder="Tva article">
                                     </div>
                                 </div>
                             </div>

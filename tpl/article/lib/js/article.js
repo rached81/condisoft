@@ -188,7 +188,7 @@ function generate_code() {
 }
 
 function reset_form() {
-
+     console.log("form");
     $("#artCode").val("");
     $("#artCategoriecode").val("").trigger("change");
     $("#frsCode").val("").trigger("change");
