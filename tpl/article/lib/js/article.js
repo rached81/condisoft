@@ -142,8 +142,7 @@ $(document).ready(function () {
 
 function non_edit_mode() {
     $("[editmode]").each(function () {
-        if ($(this).hasClass('select2-hidden-accessible')) {
-            console.log($(this).attr("id"))
+        if ($(this).hasClass('select2-hidden-accessible') ) {
              $(this).select2('enable', [false])
         } else {
             $(this).attr("disabled", "disabled")
@@ -155,7 +154,7 @@ function non_edit_mode() {
 function edit_mode() {
     
     $("[editmode]").each(function () {
-        if ($(this).hasClass('select2-hidden-accessible')) {
+        if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selectsearch") != "undefined" ) {
               console.log($(this).attr("id"))
               searchAuto(this)
              $(this).select2('enable', [true])
