@@ -17,7 +17,7 @@
 
                             <div class="col-md-6 ">
                                 <div class="form-group">
-                                    <label for="frsCode" class="col-md-12 control-label">Code clients</label>
+                                    <label for="frsCode" class="col-md-12 control-label">Code clients / fournisseurs</label>
                                     <div class="col-sm-12">
                                         <input type="text"  name="frsCode" readonly="readonly"  class="form-control" id="frsCode">
                                     </div>

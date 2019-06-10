@@ -90,7 +90,7 @@ function inti_dialog_non_edit(param) {
             $(this).dialog("close");
         },
         resizable: true,
-        title: "Consultation des clients",
+        title: "Consultation des clients / fournisseur",
         modal: true,
         height: $(window).height() * 0.9,
         width: $(window).width() * 0.98,
@@ -115,7 +115,7 @@ function inti_dialog(param) {
             $(this).dialog("close");
         },
         resizable: true,
-        title: "Gestion des clients",
+        title: "Gestion des clients / fournisseur",
         modal: true,
         height: $(window).height() * 0.9,
         width: $(window).width() * 0.98,
