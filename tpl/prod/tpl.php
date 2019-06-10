@@ -90,10 +90,10 @@
                                 <th>Désignation produit conditioné <br> -</th>
                                  <th>Unité <br> -</th>
                                  <th>Qte produite <br> -</th>
-                                  <th>Date de peromption <br> -</th>
+                                  <th> D.L.C <br> -</th>
                                    <th>Qte autres journées <br> -</th>
                                   <th >Qte demmandé<br> -</th>
-                                <th forminput validprod > Date de peromption  <br> -</th>
+                                <th forminput validprod > D.L.C <br> -</th>
                             </tr>
                         </thead>
                         <tbody id="dataartlineobject">

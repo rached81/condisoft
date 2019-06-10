@@ -103,7 +103,7 @@
                                     <td>Article</td>
                                     <td>Qte</td>
                                     <td>Qte surp.</td>
-                                    <td>Date peromption</td>
+                                    <td>D.L.C</td>
                                     <td>P.U</td>
                                     <td>Code Tva</td>
 

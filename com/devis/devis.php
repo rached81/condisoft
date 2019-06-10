@@ -42,8 +42,7 @@ class devis extends controler {
             "head" => array(
                 "Code devis" => "a_prodCodeDeviBc",
                 "Exercice" => "a_prodExerciceDevis",
-                "Date de création" => "a_prodDateDevis",
-                "Client"=>"c_frsRaisonsociale"
+                "Date de création" => "a_prodDateDevis"
             ),
             "data" => $deviss
         );
