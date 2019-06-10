@@ -3,6 +3,7 @@
         <input type="text" name="artCode" class="form-control input-sm" id="artCoder" placeholder="Code , Désignation article">
     </div>
     <button type="submit" class="btn btn-primary btn-sm">Recherche</button>
+    <button type="submit" class="btn btn-primary btn-sm">Mise à jour</button>
     <button dr="creationart" type="button" id="btn_nouveau_article" class="btn btn-success btn-sm">Nouveau</button>
     <button dr="catart" type="button" id="btn_gestion_cat" class="btn btn-success btn-sm">Gestion des catégorie</button>
 
