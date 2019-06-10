@@ -19,10 +19,10 @@ class devis extends controler {
         $em = Model::$em;
 
         $result = $em->createQueryBuilder();
-        $devis = $result->select('a', 'b','c')
+        $devis = $result->select('a', 'b')
                         ->from('StkProduction', 'a')
                         ->leftJoin('a.prodCodeEtat', 'b')
-                ->leftJoin('a.prodCodeClient', 'c')
+                    
                         ->where('a.prodCodeEtat != :prodCodeEtat')->setParameter('prodCodeEtat', 73);
 
         if (!empty($params["prodCodeDeviBc"])) {
