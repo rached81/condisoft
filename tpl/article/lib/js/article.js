@@ -191,7 +191,7 @@ function reset_form() {
      console.log("form");
     $("#artCode").val("");
     $("#artCategoriecode").val("").trigger("change");
-    $("#frsCode").val("").trigger("change");
+    $("#frsCode").select2("val","").trigger("change");
     $("#uniqCode").val("");
     $("#artDesignation").val("");
     $("#artDescription").val("");
