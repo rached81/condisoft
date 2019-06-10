@@ -71,7 +71,7 @@ $(document).ready(function () {
         readURLimage(this, "#articleimage");
     });
 
-    edit_mode()
+   
 
     reset_form();
 
