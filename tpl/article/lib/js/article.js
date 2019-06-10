@@ -143,6 +143,7 @@ $(document).ready(function () {
 function non_edit_mode() {
     $("[editmode]").each(function () {
         if ($(this).hasClass('select2-hidden-accessible')) {
+            console.log($(this).attr("id"))
              $(this).select2('enable', [false])
         } else {
             $(this).attr("disabled", "disabled")
@@ -155,6 +156,9 @@ function edit_mode() {
     
     $("[editmode]").each(function () {
         if ($(this).hasClass('select2-hidden-accessible')) {
+              console.log($(this).attr("id"))
+            $(this).select2("destrroy")
+            $(this).select2()
              $(this).select2('enable', [true])
         } else {
             $(this).removeAttr("disabled");
