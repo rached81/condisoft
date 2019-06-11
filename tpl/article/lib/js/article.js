@@ -158,7 +158,13 @@ function edit_mode() {
               console.log($(this).attr("id"))
               searchAuto(this)
              $(this).select2('enable', [true])
-        } else {
+        } else if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selecmodel") != "undefined" ) {
+              console.log($(this).attr("id"),"dd")
+                console.log($(this).hasClass('select2-hidden-accessible') ,"fff")
+              modelauto(this)
+                 console.log($(this).hasClass('select2-hidden-accessible') ,"ddddd")
+             $(this).select2('enable', [true])
+        }  else {
             $(this).removeAttr("disabled");
         }
     });
