@@ -71,7 +71,7 @@ $(document).ready(function () {
         readURLimage(this, "#articleimage");
     });
 
-   
+
 
     reset_form();
 
@@ -142,8 +142,8 @@ $(document).ready(function () {
 
 function non_edit_mode() {
     $("[editmode]").each(function () {
-        if ($(this).hasClass('select2-hidden-accessible') ) {
-             $(this).select2('enable', [false])
+        if ($(this).hasClass('select2-hidden-accessible')) {
+            $(this).select2('enable', [false])
         } else {
             $(this).attr("disabled", "disabled")
         }
@@ -152,23 +152,23 @@ function non_edit_mode() {
 }
 
 function edit_mode() {
-    
+
     $("[editmode]").each(function () {
-        if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selectsearch") != "undefined" ) {
-              console.log($(this).attr("id"))
-              searchAuto(this)
-             $(this).select2('enable', [true])
-        } else if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selecmodel") != "undefined" ) {
-              console.log($(this).attr("id"),"dd")
-                console.log($(this).hasClass('select2-hidden-accessible') ,"fff")
-              modelauto(this)
-                 console.log($(this).hasClass('select2-hidden-accessible') ,"ddddd")
-             $(this).select2('enable', [true])
-        }  else {
+        if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selectsearch") != "undefined") {
+            searchAuto(this)
+            $(this).select2('enable', [true])
+        } else if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selecmodel") != "undefined") {
+            modelauto(this)
+            $(this).select2('enable', [true])
+        } else if ($(this).hasClass('select2-hidden-accessible')) {
+            $(this).select2('destroy')
+            $(this).select2();
+            $(this).removeAttr("disabled");
+        } else {
             $(this).removeAttr("disabled");
         }
     });
-   
+
 }
 
 function article_mode() {
@@ -212,6 +212,7 @@ function reset_form() {
     console.log("form");
     $("#artCode").val("");
     $("#artCategoriecode").val("").trigger("change");
+    $("#artClass").val("").trigger("change");
     $("#frsCode").val("").trigger("change");
     $("#uniqCode").val("");
     $("#artDesignation").val("");
