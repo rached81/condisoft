@@ -68,18 +68,23 @@ class article extends controler {
     }
 
     public function asyn_supp_art() {
+
         $params = $this->get_passed_vars("data");
 
         $artcod = $params["g_artCode"];
 
         $em = Model::$em;
 
+
+
         $art_frss = $em->getRepository("StkArticleFournisseur")->findBy(array(
             "artCode" => $artcod,
         ));
 
-        foreach ($art_frss as $art_frs) {
-            $em->remove($art_frs);
+        if (!empty($art_frss)) {
+            foreach ($art_frss as $art_frs) {
+                $em->remove($art_frs);
+            }
         }
 
 
@@ -87,27 +92,26 @@ class article extends controler {
             "artCode" => $artcod,
         ));
 
+        if (!empty($stocks)) {
 
-        foreach ($stocks as $stock) {
-            $em->remove($stock);
+            foreach ($stocks as $stock) {
+                $em->remove($stock);
+            }
         }
-
 
         $invts = $em->getRepository("StkInventaire")->findBy(array(
             "artCode" => $artcod,
         ));
 
-
-        foreach ($invts as $invt) {
-            $em->remove($invt);
+        if (!empty($invts)) {
+            foreach ($invts as $invt) {
+                $em->remove($invt);
+            }
         }
 
-
-
-
         $art = $em->find("StkArticle", $artcod);
-        $em->remove($art);
 
+        $em->remove($art);
 
         $em->flush();
 
@@ -192,7 +196,7 @@ class article extends controler {
         $art->setArtPrix($params["artPrix"]);
         $art->setArtTva($params["artTva"]);
         $art->setArtClass($params["artClass"]);
-          $art->setArtUnite($params["artUnite"]);
+        $art->setArtUnite($params["artUnite"]);
 
         $art->setArtCategoriecode($em->find("StkCategorieArticle", $params["artCategoriecode"]));
         $art->setArtEtatcode($em->find("StkEtat", $params["artEtatCode"]));
@@ -315,7 +319,7 @@ class article extends controler {
         $art->setArtClass($params["artClass"]);
         $art->setArtCategoriecode($em->find("StkCategorieArticle", $params["artCategoriecode"]));
         $art->setArtEtatcode($em->find("StkEtat", $params["artEtatCode"]));
-         $art->setArtUnite($params["artUnite"]);
+        $art->setArtUnite($params["artUnite"]);
 
         $em->persist($art);
         $em->flush();
@@ -381,8 +385,6 @@ class article extends controler {
                         "art" => $params["art"],
                         "mag" => $params["mag"]
             ));
-            
-      
         }
 
         $mvts = array(
@@ -402,7 +404,7 @@ class article extends controler {
                 "Initial" => "init",
                 "Entrée" => "ent",
                 "Sortie" => "sort",
-                 "Redressement" => "rds",
+                "Redressement" => "rds",
                 "Finale" => "finale"
             ),
             "data" => $stk

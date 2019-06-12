@@ -37,7 +37,7 @@
                                     <label for="artClass"  class="col-md-12 control-label">Class</label>
                                     <div class="col-sm-12">
                                         <select cachit required="required" editmode   class="form-control" name="artClass" id="artClass" placeholder="Class">
-                                            <option value=""></option>
+                                            <option value="">Choisir</option>
                                              <option value="1">Produit fini</option>
                                             <option value="2">Matiére Premiére</option>
                                             <option value="3">Consommable</option>

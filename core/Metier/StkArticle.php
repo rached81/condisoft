@@ -147,7 +147,7 @@ class StkArticle
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="StkConsomationEntete", mappedBy="consArtcode")
+     * @ORM\OneToMany(targetEntity="StkConsomationEntete", mappedBy="consArtcode")
      */
     private $consCode;
 

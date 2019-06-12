@@ -121,7 +121,7 @@ class StkConsomationEntete
        /**
      * @var \StkArticle
      *
-     * @ORM\ManyToOne(targetEntity="StkArticle")
+     * @ORM\ManyToOne(targetEntity="StkArticle" , inversedBy="consCode")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cons_artCode", referencedColumnName="art_code")
      * })
