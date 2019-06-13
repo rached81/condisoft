@@ -143,8 +143,10 @@ $(document).ready(function () {
 function non_edit_mode() {
     $("[editmode]").each(function () {
         if ($(this).hasClass('select2-hidden-accessible')) {
+           
             $(this).select2('enable', [false])
         } else {
+            
             $(this).prop("disabled", true)
         }
     });
@@ -155,17 +157,22 @@ function edit_mode() {
 
     $("[editmode]").each(function () {
         if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selectsearch") != "undefined") {
+           
             searchAuto(this)
             $(this).select2('enable', [true])
         } else if ($(this).hasClass('select2-hidden-accessible') && typeof $(this).attr("selecmodel") != "undefined") {
-            modelauto(this)
+         
+           $(this).select2('destroy')
+            $(this).select2();
             $(this).select2('enable', [true])
         } else if ($(this).hasClass('select2-hidden-accessible')) {
+            
             $(this).select2('destroy')
             $(this).select2();
-             $(this).select2('enable', [true])
+            $(this).select2('enable', [true])
         } else {
-           $(this).prop("disabled", false)
+            
+            $(this).prop("disabled", false)
         }
     });
 
@@ -209,7 +216,7 @@ function generate_code() {
 }
 
 function reset_form() {
-   
+
     $("#artCode").val("");
     $("#artCategoriecode").val("").trigger("change");
     $("#artClass").val("").trigger("change");
@@ -277,6 +284,8 @@ function inti_dialog_non_edit(param) {
 
     $("#dialogs").dialog("open");
 
+
+
 }
 
 function inti_dialog(param) {
@@ -320,13 +329,13 @@ function populate_list(data) {
 
 
         get_ajax_data("/article/asyn_get_article", param, function (data) {
-            
+
             reset_form();
-            
+
             edit_mode();
-            
+
             $("#artCode").val(data.data.data[0].g_artCode);
-           
+
             $("#artCategoriecode").val(data.data.data[0].i_catartCode).trigger("change")
             $("#frsCode").val(data.data.data[0].p_frs_code).trigger("change");
             $("#artClass").val(data.data.data[0].g_artClass).trigger("change")
@@ -363,14 +372,16 @@ function populate_list(data) {
 
             reset_form();
             edit_mode()
-            
+            non_edit_mode()
+
             $("#artCode").val(data.data.data[0].g_artCode);
-          
-            
+
+
             $("#artClass").val(data.data.data[0].g_artClass).trigger("change")
             $("#frsCode").val(data.data.data[0].p_frs_code).trigger("change")
             $("#artCategoriecode").val(data.data.data[0].i_catartCode).trigger("change")
-                
+
+
             $("#artDesignation").val(data.data.data[0].g_artDesignation);
             $("#artDescription").val(data.data.data[0].g_artDescription);
             if (data.data.data[0].g_artDatecreation != null) {
@@ -387,9 +398,11 @@ function populate_list(data) {
             setimage(path_base + "/" + "imgs" + "/" + data.data.data[0].g_artImage, "#articleimage")
 
             $("#addform").attr("action", "");
-            non_edit_mode()
+
             unbind_code_maker();
+
             inti_dialog_non_edit();
+
         });
 
 
