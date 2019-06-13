@@ -289,7 +289,11 @@ function populate_list(data) {
                 }
 
             })
-
+            
+             var selectmap = $("#prodCodeClient").select2('data')[0].text;
+             
+          
+             $("#prodClientp").html(selectmap);
             $("#prodDevise").val(data.data[0].prodDevise.deviseCode).trigger("change");
             $("#prodCommerciale").val(data.data[0].prodCommerciale.idutil).trigger("change");
             $("#prodDevisep").html(data.data[0].prodDevise.deviseLibelle);

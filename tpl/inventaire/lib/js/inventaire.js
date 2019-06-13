@@ -243,8 +243,9 @@ function get_brd() {
             $.alertMsg("Bordereau innexistant !", "Bordereau d'inventaire")
         }
         if (data.etat == "0") {
-            $.buildTable("#list-brd", "Bordereau de l'inventaire N° " + param.brdnum, data.data, []);
+            $.buildTable("#list-brd", "Bordereau de l'inventaire N° " + param.brdnum, data.data, [],null,true);
             $("#list-brd table tr.lineitem").each(function() {
+                
                 var obj = JSON.parse($(this).attr("obj"));
                 if (obj.h_etatCode != 61) {
                     var status = "disabled"

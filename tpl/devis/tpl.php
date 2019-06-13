@@ -184,6 +184,8 @@
             </tr>
 
             <tr>
+                
+                 <th  class="col-md-6">Cient : <span id="prodClientp"></span></th>
                 <th  class="col-md-6">Devise : <span id="prodDevisep"></span></th>
             </tr>
 
