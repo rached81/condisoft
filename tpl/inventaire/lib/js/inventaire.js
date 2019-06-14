@@ -158,7 +158,7 @@ function inti_dialog_ecart() {
 function calc_ecart() {
     var param = getFromObj("." + "profile");
     get_ajax_data("/inventaire/asyn_gen_ecart", param, function(data) {
-        $.buildTable("#ecartsinvt", "Liste des ecarts de l'inventaire", data.data, []);
+        $.buildTable("#ecartsinvt", "Liste des ecarts de l'inventaire", data.data, [],null,true);
         $("#ecartsinvt table tr.lineitem").each(function() {
 
             obj = JSON.parse($(this).attr("obj"));
