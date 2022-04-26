@@ -15,8 +15,23 @@ Class Exceptions {
         if (empty(self::$namespace->LastExceptionString)) {
             self::$namespace->LastExceptionString = array();
         }
-        self::$Exception = parse_ini_file(PATH_ROOT . DS . "core/application/exceptions.ini");
+        // $excep = array(
+
+        //     1001 => "Merci d'introduire votre login et votre mot de passe",
+        //     1002 => "L'action n'a pas été trouvé",
+        //     1003 => "Requete erronée",
+        //     1004 => "Erreur inconu",
+        //     1005 => "Accéss reffusé , Vous n'avez pas le droit d'accés pour cette ressource",
+        //     1006 => "Accéss reffusé , Vous n'avez pas le droit pour supprimer se profil",
+        //     1007 => "L'utilisateur n'a pas pu etre supprimer",
+            
+        //     2001 => "Erreur lors de la recuperation de liste des services"
+        // );
+        // // self::$Exception = parse_ini_file(PATH_ROOT . DS . "core/application/exceptions.ini");
+        // self::$Exception = $excep;
+       self::$Exception = parse_ini_file(PATH_ROOT . DS . "core/application/exceptions.ini");
     }
+    
 
     public static function getInstance() {
         if (is_null(self::$_instance)) {
@@ -46,6 +61,9 @@ Class Exceptions {
         }
         
     }
+    // ALTER USER 'condisoft'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Rached@2019';
+    // GRANT ALL PRIVILEGES ON *.* TO 'condisoft'@'localhost' WITH GRANT OPTION;
+    
 
     public static function clearException() {
 

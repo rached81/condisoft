@@ -42,16 +42,17 @@ class Model {
                         'password' => $vars->db_pass,
                         'dbname' => $vars->db_name
             ));
-
-            $db->query("SET NAMES utf8");
-
+            // var_dump($db);  
+           // $db->query("SET NAMES utf8");
+            
             $defadabt = self::default_adapter($db);
+            // var_dump($db);
             Zend_Db_Table_Abstract::setDefaultAdapter($defadabt);
             return $defadabt;
         } catch (Exception $ex) {
             if (!($ex->getMessage() == null)) {
                 Message::set_info_msg("Erreur de connection");
-                echo json_encode(array("etat" => "1"));
+                echo json_encode(array("etat" => $ex->getMessage()));
             } else {
                 echo json_encode(array("etat" => "0"));
             }

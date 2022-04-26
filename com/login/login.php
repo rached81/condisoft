@@ -18,16 +18,16 @@ class login extends controler {
 
                     $db = Model::getDb();
             
+                    // var_dump($db);
+                    // die;
                     $adapter = new Zend_Auth_Adapter_DbTable(
-                            $db, 'util', 'utilog', 'utipwd', 'MD5(?)'
+                            $db, 'UTIL', 'UTILOG', 'UTIPWD', 'MD5(?)'
                     );
-
                     $adapter->setIdentity($rq->get("username"));
                     $adapter->setCredential($rq->get('password'));
-
                     $auth = Zend_Auth::getInstance();
                     $result = $auth->authenticate($adapter);
-                
+                    
                     if ($result->isValid()) {
                         $storage = $auth->getStorage();
                         $storage->write($adapter->getResultRowObject(array("IDUTIL", "UTIPNOM", "UTILOG", "UTINOM", "idPRF")));
@@ -45,14 +45,14 @@ class login extends controler {
                 
                 if (!($ex->getMessage() == null)) {
                     Message::set_info_msg("Erreur de connection");
-                    echo json_encode(array("etat" => "1"));
+                    echo json_encode(array("etat" => $ex->getMessage()));
                 } else {
                     echo json_encode(array("etat" => "0"));
                 }
                 
             }
         }
-
+        
         view::setContext(get_class($this));
         
         view::addDefaultsCss();

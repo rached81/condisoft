@@ -12,7 +12,9 @@
 */
 
 //Affichage d'erreurs 
+/*ini_set('display_errors', false);  */
 ini_set('display_errors', false);  
+
 
 define('BASE_PATH', dirname(__FILE__) );
 
