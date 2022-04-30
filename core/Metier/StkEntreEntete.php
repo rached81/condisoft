@@ -544,7 +544,7 @@ class StkEntreEntete
      */
     public function setEntDevise($entDevise)
     {
-        $this->entDevise = $entDevise;
+        $this->entDevise = floatval($entDevise);
 
         return $this;
     }
@@ -568,7 +568,7 @@ class StkEntreEntete
      */
     public function setEntCours($entCours)
     {
-        $this->entCours = $entCours;
+        $this->entCours = floatval($entCours);
 
         return $this;
     }
