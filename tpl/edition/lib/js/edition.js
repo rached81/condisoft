@@ -47,6 +47,7 @@ function populate_list_stk(data) {
 
 
 function populate_list_histprix(data) {
+    console.log(data.data);
     $.buildTable("#etathist", "Etat des historiques de prix depuis "+$("#date").val(), data.data, []);
 }
 

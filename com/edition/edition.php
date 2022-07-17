@@ -158,14 +158,16 @@ class edition extends controler {
                         ->setParameter('todate', new \DateTime($this->dfrm($params["date"])))
                         ->setParameter('etat', 31)
                         ->getQuery()->getScalarResult();
-
-
+// echo '<pre>';
+// var_dump($histprix);
+// echo '</pre>';
+// die;
         $histpr = array(
             "head" => array(
                 "Article" => "c_artCode",
                 "Désignation" => "c_artDesignation",
                 "Code mouvement" => "a_ent_code",
-                "Date" => "b_entDatereception",
+                "Date de reception" => "b_entDatereception",
                 "Prix" => "a_entPu"
             ),
             "data" => $histprix
