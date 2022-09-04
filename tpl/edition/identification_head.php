@@ -2,7 +2,7 @@
 
     <div class="form-group">
         <span style="display: inline-block">Affectation : </span>
-        <input required=""  type="text" name="identifiant" class="form-control input-sm" id="identifiant" placeholder="Code">
+        <input   type="text" name="identifiant" class="form-control input-sm" id="identifiant" placeholder="Code"required />
 
     </div>
     

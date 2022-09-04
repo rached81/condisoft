@@ -29,8 +29,8 @@ $(document).ready(function () {
     
      $("#get_ident_form").validate({
         rules: {
-
-        }
+          
+          }
     })
     
     

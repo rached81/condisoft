@@ -851,6 +851,8 @@ function ajout_article_data(data) {
 
         window.formapp.qtestk = arrat;
 
+        console.log(arrat);
+
 
     }
 

@@ -163,7 +163,8 @@ $(document).ready(function () {
     window.modul = "consommation";
     $("#get_cons_form").validate({
         rules: {
-        }
+        }, 
+    
     })
 
     $("#valdartline").click(function () {

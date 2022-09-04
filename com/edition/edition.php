@@ -66,7 +66,11 @@ class edition extends controler {
         $id = $params["identifiant"];
 
         $prm = explode("-", $id);
-
+        // if(count($prm) !==6){
+        //     Message::set_info_msg("Merci de verifier le code introduit");
+        //     echo json_encode(array("etat" => 1));
+        //     die();
+        // }
         $rs = array();
 
         if (isset($prm[1])) {
@@ -179,7 +183,8 @@ class edition extends controler {
     public function asyn_get_cons() {
 
         $params = $this->get_passed_vars("data");
-
+        // var_dump($params);
+        // die;
         $em = Model::$em;
 
         $stkquery = $em->createQueryBuilder();
