@@ -52,6 +52,11 @@ class prod extends controler {
     }
 
     public function asyn_check_art() {
+$typeProduct = [
+    1 => "Produit fini",
+    2 => "Matiére Premiére",
+    3 => "Consommable",
+];
 
         $params = $this->get_passed_vars("data");
 
@@ -72,6 +77,8 @@ class prod extends controler {
             $frs = $code["2"];
 
             $artdef = $em->find("StkArticle", $art);
+            // var_dump($artdef);
+            // die;
 
             if ($artdef !== null) {
 
@@ -132,7 +139,7 @@ class prod extends controler {
             Message::set_info_msg($msg);
             echo json_encode(array("etat" => 1));
         } else {
-            echo json_encode(array("data" => $params, "art" => $artdef->getArtDesignation(), "frs" => $frsref->getFrsRaisonsociale(), "etat" => 0));
+            echo json_encode(array("data" => $params, "art" => $artdef->getArtDesignation(), "artUnite" => $artdef->getArtUnite(), "artType" =>$typeProduct[$artdef->getArtClass()] , "frs" => $frsref->getFrsRaisonsociale(), "etat" => 0));
         }
     }
 

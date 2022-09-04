@@ -833,7 +833,9 @@ function ajout_article_data(data) {
         })
 
         if (!execp) {
-
+            console.log(data.artUnite);
+         $('#g_artUnite').html(data.artUnite);
+         $('#g_artType').html(data.artType);
             var html = '<div class="detartFrs" >' + $("#proddetailArticleCodes").val() + "-" + $("#consprodQtes").val() + '<i class="fa fa-remove rmartfrs" ></i></div>';
             $(".selectedProdDet").find("#consProdId").append(html)
 

@@ -45,8 +45,11 @@
                                 <tr>
                                     <td>Article</td>
                                     <td>Qte</td>
-                                    <td> <!--Code traçabilité--></td>
-                                    <td><!--Code Kit--></td>
+                                    <!--<td> Code traçabilité</td> -->
+                                    <td> Unité</td>
+                                    <!--<td>Code Kit</td>-->
+                                    <td> Type de produit</td>
+
 
                                 </tr>
                                 
@@ -62,10 +65,12 @@
 
   
                                     <td class="col-md-3" >
-                                        <!--<select  selectsearch="stk_Entre_Detail:ent_codeTrace:ent_codeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproLottracecode" name="demaproLottracecode" placeholder=""></select>-->
+                                       <span id="g_artUnite" ></span> 
+                                        <!-- <select  selectsearch="stk_Entre_Detail:ent_codeTrace:ent_codeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproLottracecode" name="demaproLottracecode" placeholder=""></select> -->
                                     </td>
 
                                     <td class="col-md-3" >
+                                    <span id="g_artType" ></span> 
                                         <!--<select  selectsearch="stk_Entre_Detail:ent_lotCodeTrace:ent_lotCodeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproTracecode" name="demaproTracecode" placeholder=""></select>-->
                                     </td>
 

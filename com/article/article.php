@@ -49,7 +49,7 @@ class article extends controler {
             ),
             "data" => $artrs,
         );
-
+        
         echo json_encode(array("data" => $artarray, "etat" => 0));
     }
 

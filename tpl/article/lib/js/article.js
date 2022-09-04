@@ -229,6 +229,8 @@ function reset_form() {
     $("#artDelaislivraison").val("");
     $("#artStockMinimale").val("");
 
+    $("#artUnite").val("");
+
 
 }
 
@@ -333,7 +335,7 @@ function populate_list(data) {
             reset_form();
 
             edit_mode();
-
+            console.log('unité : ' + data.data.data[0].g_artUnite)
             $("#artCode").val(data.data.data[0].g_artCode);
 
             $("#artCategoriecode").val(data.data.data[0].i_catartCode).trigger("change")
@@ -348,6 +350,7 @@ function populate_list(data) {
             $("#artStockMinimale").val(data.data.data[0].g_artStockminimale)
             $("#artPrix").val(data.data.data[0].g_artPrix)
             $("#artTva").val(data.data.data[0].g_artTva)
+            $("#artUnite").val(data.data.data[0].g_artUnite)
             $("#frsArtref").val(data.data.data[0].p_frsArtref)
             setimage(path_base + "/" + "imgs" + "/" + data.data.data[0].g_artImage, "#articleimage")
             $("#addform").attr("action", "update_article");
@@ -375,7 +378,7 @@ function populate_list(data) {
             non_edit_mode()
 
             $("#artCode").val(data.data.data[0].g_artCode);
-
+            console.log('unité : ' + data.data.data[0].g_artUnite)
 
             $("#artClass").val(data.data.data[0].g_artClass).trigger("change")
             $("#frsCode").val(data.data.data[0].p_frs_code).trigger("change")
@@ -391,7 +394,8 @@ function populate_list(data) {
             $("#artStockMinimale").val(data.data.data[0].g_artStockminimale)
 
             $("#artPrix").val(data.data.data[0].g_artPrix)
-            $("#artTva").val(data.data.data[0].g_artTva)
+            $("#artTva").val(data.data.data[0].g_artTva);
+            $("#artUnite").val(data.data.data[0].g_artUnite);
 
             $("#frsArtref").val(data.data.data[0].p_frsArtref)
 
