@@ -39,11 +39,26 @@ class article extends controler {
         }
 
         $artrs = $art->getQuery()->getScalarResult();
+        
+        $i = 0;
+        foreach ($artrs as $art){
+            if($art['g_artClass'] == 1 ){
+                $artrs[$i]['g_artClassName'] = "Produit fini";
+            }
+            if($art['g_artClass'] == 2 ){
+                $artrs[$i]['g_artClassName'] = "Matière Premiére";
+            }
+            if($art['g_artClass'] == 3 ){
+                $artrs[$i]['g_artClassName'] = "Consommable";
+            }
+            $i++;
 
+        }
         $artarray = array(
             "head" => array(
                 "Code article" => "g_artCode",
                 "Désignation" => "g_artDesignation",
+                "Type" => "g_artClassName",
                 "Date de création" => "g_artDatecreation",
                 "Etat" => "h_etatLibelle",
             ),

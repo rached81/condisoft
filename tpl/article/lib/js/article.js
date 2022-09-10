@@ -328,14 +328,14 @@ function populate_list(data) {
             $("#existant").removeAttr("checked")
             $("#artCode").attr("readonly", "readonly")
         }
-
+        console.log('unité : test ' )
 
         get_ajax_data("/article/asyn_get_article", param, function (data) {
 
             reset_form();
 
             edit_mode();
-            console.log('unité : ' + data.data.data[0].g_artUnite)
+           
             $("#artCode").val(data.data.data[0].g_artCode);
 
             $("#artCategoriecode").val(data.data.data[0].i_catartCode).trigger("change")

@@ -114,7 +114,14 @@ function reset_form() {
             $(this).val("")
         }
     })
-
+    $("#addartbeform").find("input").each(function () {
+        
+            $(this).val("");
+       
+    })
+    
+    console.log("$('#addartbeform').reset() executed ! ");
+    // $("#addartbeform").trigger"reset");
     $("#addform").find("select").each(function () {
         $(this).val("").trigger("change")
     })
@@ -846,8 +853,8 @@ function ajout_article_data(data) {
         var arrat = [];
         $(".detartFrs").each(function () {
             var arr = {};
-            arr.art = $(this).html().split("-")[1];
-            arr.qte = $(this).html().split("-")[3];
+            arr.art = $(this).html().split("<")[0].split("-")[1];
+            arr.qte = $(this).html().split("<")[0].split("-")[3];
             arrat.push(arr);
         })
 
@@ -913,7 +920,7 @@ function getdetailObject() {
                 } else {
                     obj["consProdId"] = new Array();
                     $(this).find(".detartFrs").each(function () {
-                        var arr = $(this).html().split("-")
+                        var arr = $(this).html().split('<')[0].split("-");
                         var subobj = {}
                         subobj.consprodType = arr[0]
                         subobj.consprodArticleCode = arr[1]
