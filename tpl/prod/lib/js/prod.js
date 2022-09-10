@@ -117,11 +117,16 @@ function reset_form() {
     $("#addartbeform").find("input").each(function () {
         
             $(this).val("");
+            if($('#g_artUnite').length )
+                $('#g_artUnite').html('');
+            if($('#g_artType').length)
+                $('#g_artType').html('');
+
        
     })
     
     console.log("$('#addartbeform').reset() executed ! ");
-    // $("#addartbeform").trigger"reset");
+    // $("#addartbeform").trigger("reset");
     $("#addform").find("select").each(function () {
         $(this).val("").trigger("change")
     })
@@ -169,7 +174,8 @@ function inti_dialog(param) {
             },
             "Annuler": function () {
                 $(this).dialog("close");
-            }, "Imprimer Code bare": function () {
+            }, 
+            "Imprimer Code bare": function () {
                 if ($(".dataDet").length > 0) {
                     $("#printbarecode").html("");
                     var inc = 0

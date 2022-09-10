@@ -142,7 +142,19 @@ $typeProduct = [
             echo json_encode(array("data" => $params, "art" => $artdef->getArtDesignation(), "artUnite" => $artdef->getArtUnite(), "artType" =>$typeProduct[$artdef->getArtClass()] , "frs" => $frsref->getFrsRaisonsociale(), "etat" => 0));
         }
     }
-
+    public function dump($var)
+    {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+    }
+    public function dd($var)
+    {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+        die;
+    }
     public function asyn_get_data_object($prm = null) {
 
         if ($prm == null) {
@@ -151,6 +163,7 @@ $typeProduct = [
             $params = $prm;
         }
         $em = Model::$em;
+        //$this->dump($params); die;
 
 
         $result = $em->createQueryBuilder();
