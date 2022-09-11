@@ -53,9 +53,9 @@ class prod extends controler {
 
     public function asyn_check_art() {
 $typeProduct = [
-    1 => "Produit fini",
-    2 => "Matiére Premiére",
-    3 => "Consommable",
+    1 => "MF",
+    2 => "MP",
+    3 => "MC",
 ];
 
         $params = $this->get_passed_vars("data");

@@ -933,22 +933,30 @@ function ajout_article_data(data) {
         var artfrs = $("#proddetailArticleCodes").val();
         var artfrsarray = artfrs.split("-");
         window.formapp.qtestk = [];
+        console.log(data.artType);
+        
         $(".selectedProdDet").find("#consProdId").find(".detartFrs").each(function () {
+          
+
             if (artfrsarray[1] == $(this).html().split("-")[1]) {
                 $.alertMsg("Vous avez dèja introduit cette article", "Ajout article")
                 execp = true;
             }
-
-
-
+             
+            
         })
 
         if (!execp) {
-            console.log(data.artUnite);
+            if (data.artType == 'MC') {
+                console.log("je suis !")
+                $.alertMsg("Vous devez Choisir une Matière première", "Ajout article")
+                execp = true;
+            }
+        //  console.log(data.artUnite);
          $('#g_artUnite').html(data.artUnite);
          $('#g_artType').html(data.artType);
             var html = '<div class="detartFrs" >' + $("#proddetailArticleCodes").val() + "-" + $("#consprodQtes").val() + '<i class="fa fa-remove rmartfrs" ></i></div>';
-            $(".selectedProdDet").find("#consProdId").append(html)
+            $(".selectedProdDet").find("#consProdId").html(html)
 
 
         } else {
@@ -1076,7 +1084,18 @@ function ajout_data() {
 function gen_data() {
     var param = {}
     param = getFromObj("#" + "addform")
-    var objs = getdetailObject();
+    console.log('test : ' + $(".validproddetail").length)
+    validLine = false;
+    $(".validproddetail").each(function () {
+       if($(this).prop('checked') == true){
+        validLine = true;
+       }
+    })
+    if(validLine){
+        
+   
+    var objs = getdetailObjectBis();
+    console.log("line 1088 : ", objs);
     if (objs !== false) {
         param.prodCodeDeviBcs = objs;
         param.mag = $("#mag").val()
@@ -1086,9 +1105,11 @@ function gen_data() {
             }
         })
     } else {
-        $.alertMsg("Merci de verifier les valeurs introduite", "Production")
+        $.alertMsg("Merci de verifier les valeurs introduite", "Production");
     }
-
+    }else{
+        $.alertMsg("Merci de verifier les valeurs introduite!!!", "Production");
+    }
 }
 
 function valid_data() {
@@ -1113,9 +1134,11 @@ function getdetailObjectBis() {
     var demmandeqte = 0
     var produiteqte = 0
     var journeqte = 0
-
+    
     $("#dataartlineobject").find(".dataDet").each(function () {
         var obj = {};
+        if($(this).find(".validproddetail").prop('checked') == true){
+        
         obj[$(this).attr("key")] = $(this).attr("idval");
         $(this).find(".itemart").each(function () {
 
@@ -1137,6 +1160,7 @@ function getdetailObjectBis() {
                         if (!$.isNumeric($(this).html())) {
                             $.alertMsg("Les Qtes doivent étre de type numérique", "Production")
                             error = true;
+                            console.log("je suis en 1150")
                             journeqte = 1000000000000000000000000000000000;
                         } else {
                             journeqte = parseFloat($(this).html());
@@ -1168,21 +1192,39 @@ function getdetailObjectBis() {
         if (parseFloat(demmandeqte) < (parseFloat(journeqte) + parseFloat(produiteqte))) {
             $.alertMsg("Merci de ne pas dépassser les Qtes demandé ", "Production")
             error = true;
+            console.log("je suis en 1181")
         }
 
         if (typeof obj["consProdId"] !== 'undefined') {
             if (obj["consProdId"].length > 0) {
-                objs.push(obj);
+                // if($(this).find(".validproddetail").prop('checked') == true){
+
+                    console.log($(this).find(".validproddetail").prop('id'));
+                    objs.push(obj);
+                    
+                // }
+               
             } else {
                 $.alertMsg("Merci de remplire les article des matiéres premiéres manquants", "Production")
                 error = true;
+                console.log("je suis en 1195")
             }
         } else {
-            objs.push(obj);
+
+            // if($(this).find(".validproddetail").prop('checked') == true){
+
+                console.log($(this).find(".validproddetail").prop('id'));
+                objs.push(obj);
+                
+            // }
+
+            
+            
         }
-
+    }
     })
-
+    console.log('error : '+ error);
+    console.log('objs : '+ objs);
     if (!error) {
         return objs;
     } else {
