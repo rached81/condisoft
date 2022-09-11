@@ -2,7 +2,9 @@ $(document).ready(function () {
 
     actualise_stock();
 
+    function controleProdArticle(){
 
+    }
 
     window.arttrace = "";
     window.lottrace = "";
@@ -71,7 +73,88 @@ $(document).ready(function () {
         $(this).click(function () {
             $(this).parent().parent().remove();
         })
-    })
+    });
+
+/**
+ * START : controle change value in detail production article
+ */
+    $("#consProdId").livequery(function () {
+        $(this).mouseout(function(){
+
+            if($("#consProdId").html() ==""){
+                $(this).parent().parent().find(".validproddetail").prop('checked', false)
+            
+            }
+    
+            })
+        });
+    $("#journeDatePeromption").livequery(function () {
+        $(this).find("input").change(function(){
+            if($(this).val() ==""){
+                $(this).parent().parent().find(".validproddetail").prop('checked', false)
+            
+            }
+    
+            })
+        });
+
+$("#journeQte").livequery(function () {
+    $(this).mouseout(function(){
+        console.log("change change change change ")
+        if($("#journeQte").html() ==""){
+            $(this).parent().parent().find(".validproddetail").prop('checked', false)
+        
+        }
+
+        })
+    });
+/**
+ * END : controle change value in detail production article
+ */
+
+
+
+    $(".validproddetail").livequery(function () {
+        $(this).click(function () {
+            
+                id = $(this).prop('id');
+
+                $(this).parent().parent().addClass('validDetailProd')
+                detartFrs = $(this).parent().parent().find(".detartFrs").length;
+                journeQte = $(this).parent().parent().find("#journeQte").html();
+                journeDatePeromption = $(this).parent().parent().find(".hasDatepicker").val();
+                console.log(detartFrs + " - " + journeQte + " - " + journeDatePeromption);
+                msg="";
+                if(!detartFrs){
+                    msg += "<br>La matière première";
+                }
+                if(journeQte == ""){
+                    msg += "<br>La quantité produite";
+                }
+                if(!journeDatePeromption){
+                    msg += "<br>La D.L.C  Date Limit de Consommation";
+                }
+                if(msg != ""){
+                    $(this).prop('checked', false)
+                    $.alertMsg("Vous devez entrer: "+msg, 'ALERT !');
+                }
+               // else
+                
+                // {
+                //     if($(this).prop('checked')==false)
+                //     {
+                //         $(this).prop('checked', true)
+                //     }else{
+                //         $(this).prop('checked', true) 
+                //     }
+            
+               // }
+
+           
+            
+ 
+        })
+    }); 
 
     $(".consproddetailbtn").livequery(function () {
         $(this).click(function () {
@@ -354,22 +437,28 @@ function populate_list(data) {
                     html += "<td id='artDesign' >" + values.proddetailArticleCode.artDesignation + "</td>";
                      html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "</td>";
                     if (values.consProdId.length == 0) {
-                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > </td>";
+                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
                         html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                     } else {
 
-                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > " + values.consProdId[0].journeQte + "</td>";
+                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
                         html += "<td id='journeDatePeromption' class='itemart' >" + '<input value="' + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + '" type="text" datepick>' + "</td>";
                     }
 
                     html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
                     html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
-                    html += '<td id="oper"> <button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> </td>'
+                    html += '<td id="oper" class="col-3 " > '
+                   // html += '<div class="ui-dialog-buttonpane ui-widget-content "><div class="ui-dialog-buttonset">';
+                    html += '<button type="button" class="btn px-2 btn-primary btn-xs consproddetailbtn"   style=""> Selectioner </button>';
+                    html += '&nbsp;&nbsp;&nbsp; sauvgarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
+                   // html += '</div></div>'
+                    html += '</td>'
                     html += "</tr>";
 
                     $("#dataartlineobject").append(html);
             
                 })
+                
 
                 $("#addform").attr("action", "gen_data");
 
@@ -473,7 +562,7 @@ function populate_list(data) {
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
                    html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > </td>";
+                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
 
@@ -483,7 +572,10 @@ function populate_list(data) {
 
                 html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
-                html += '<td id="oper"> <button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> </td>'
+                html += '<td id="oper">';
+                html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> ';
+                html += '&nbsp;&nbsp;&nbsp; sauvgarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
+                html += '</td>';
                 html += "</tr>";
 
                 $("#dataartlineobject").append(html);
@@ -643,16 +735,19 @@ function get_journe_detail() {
                 html += "<td  id='artDesign' >" + values.proddetailArticleCode.artDesignation + "</td>";
                   html += "<td  id='artUnit' >" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > </td>";
+                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
                     console.log(values.consProdId)
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > " + values.consProdId[0].journeQte + "</td>";
+                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input value="' + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + '" type="text" datepick>' + "</td>";
                 }
                 html += "<td id='qteProduite' class='itemart'  >" + values.qteProduite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
-                html += '<td id="oper"> <button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> </td>'
+                html += '<td id="oper">';
+                html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button>';
+                html += '&nbsp;&nbsp;&nbsp; sauvgarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
+                html += '</td>'
                 html += "</tr>";
 
                 $("#dataartlineobject").append(html);
@@ -744,17 +839,20 @@ function get_journe_detail() {
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
                    html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' > </td>";
+                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
 
-                    html += "<td id='journeQte'   class='itemart' > " + values.consProdId[0].journeQte + "</td>";
+                    html += "<td id='journeQte'   class='itemart' >" + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + "</td>";
                 }
 
                 html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
-                html += '<td id="oper"> <button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> </td>'
+                html += '<td id="oper">'; 
+                html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button>';
+                html += '&nbsp;&nbsp;&nbsp; sauvgarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
+                html += ' </td>'
                 html += "</tr>";
 
                 $("#dataartlineobject").append(html);
@@ -891,17 +989,12 @@ function getdetailObject() {
             if ($(this).attr("id") == "proddetailQteDevis") {
                 demmandeqte = parseFloat($(this).html());
             }
-
-            if ($(this).attr("id") == "qteProduite") {
-
-               
-                    produiteqte = parseFloat($(this).html());
-                 
+            if ($(this).attr("id") == "qteProduite") { 
+                    produiteqte = parseFloat($(this).html());   
                     
                     if(!produiteqte){
                         produiteqte = 0;
                     }
-              
             }
 
             if ($(this).attr("id") !== "oper") {
@@ -940,7 +1033,7 @@ function getdetailObject() {
         })
 
         if (parseFloat(demmandeqte) < (parseFloat(journeqte) + parseFloat(produiteqte))) {
-            $.alertMsg("Merci de ne pas dépassser les Qtes demmandé ", "Production")
+            $.alertMsg("Merci de ne pas dépassser les Qtes demandé ", "Production")
             error = true;
         }
 
@@ -1009,6 +1102,92 @@ function valid_data() {
             $("#dialogs").dialog("close");
         }
     })
+
+}
+
+function getdetailObjectBis() {
+
+    var objs = [];
+    var error = false;
+
+    var demmandeqte = 0
+    var produiteqte = 0
+    var journeqte = 0
+
+    $("#dataartlineobject").find(".dataDet").each(function () {
+        var obj = {};
+        obj[$(this).attr("key")] = $(this).attr("idval");
+        $(this).find(".itemart").each(function () {
+
+            if ($(this).attr("id") == "proddetailQteDevis") {
+                demmandeqte = parseFloat($(this).html());
+            }
+            if ($(this).attr("id") == "qteProduite") { 
+                    produiteqte = parseFloat($(this).html());   
+                    
+                    if(!produiteqte){
+                        produiteqte = 0;
+                    }
+            }
+
+            if ($(this).attr("id") !== "oper") {
+                if ($(this).attr("id") !== "consProdId") {
+
+                    if ($(this).attr("id") == "journeQte") {
+                        if (!$.isNumeric($(this).html())) {
+                            $.alertMsg("Les Qtes doivent étre de type numérique", "Production")
+                            error = true;
+                            journeqte = 1000000000000000000000000000000000;
+                        } else {
+                            journeqte = parseFloat($(this).html());
+                        }
+                    }
+
+                    if ($(this).find("input").length > 0) {
+                        obj[$(this).attr("id")] = $(this).find("input").val();
+                    } else {
+                        obj[$(this).attr("id")] = $(this).html();
+                    }
+
+                } else {
+                    obj["consProdId"] = new Array();
+                    $(this).find(".detartFrs").each(function () {
+                        var arr = $(this).html().split('<')[0].split("-");
+                        var subobj = {}
+                        subobj.consprodType = arr[0]
+                        subobj.consprodArticleCode = arr[1]
+                        subobj.consprodCodeFrs = arr[2]
+                        subobj.consprodQte = arr[3]
+                        obj["consProdId"].push(subobj)
+                    })
+
+                }
+            }
+        })
+
+        if (parseFloat(demmandeqte) < (parseFloat(journeqte) + parseFloat(produiteqte))) {
+            $.alertMsg("Merci de ne pas dépassser les Qtes demandé ", "Production")
+            error = true;
+        }
+
+        if (typeof obj["consProdId"] !== 'undefined') {
+            if (obj["consProdId"].length > 0) {
+                objs.push(obj);
+            } else {
+                $.alertMsg("Merci de remplire les article des matiéres premiéres manquants", "Production")
+                error = true;
+            }
+        } else {
+            objs.push(obj);
+        }
+
+    })
+
+    if (!error) {
+        return objs;
+    } else {
+        return false;
+    }
 
 }
 

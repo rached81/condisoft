@@ -98,6 +98,7 @@
                                   <th> D.L.C <br> -</th>
                                    <th>Qte autres journées <br> -</th>
                                   <th >Qte demmandé<br> -</th>
+                                  <th >Operation<br> -</th>
                                 <th forminput validprod > D.L.C <br> -</th>
                             </tr>
                         </thead>
