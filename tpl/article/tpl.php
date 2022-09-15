@@ -123,7 +123,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="frsArtref" class="col-md-12 control-label">Référence constructeur</label>
+                                    <label for="frsArtref" class="col-md-12 control-label">Référence fournisseur</label>
                                     <div class="col-sm-12">
                                         <input type="text" editmode   class="form-control" name="frsArtref" id="frsArtref" placeholder="Ref.">
                                     </div>
