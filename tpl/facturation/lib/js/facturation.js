@@ -531,7 +531,7 @@ function populate_list(data) {
 
             $("#htva").html(sgsNumber(thtva));
             $("#tva").html(sgsNumber(ttva));
-            $("#timbre").html(sgsNumber(0.600));
+            // $("#timbre").html(sgsNumber(0.600));
             $("#ttc").html(sgsNumber(ttc + 0.600));
 
 
@@ -543,7 +543,7 @@ function populate_list(data) {
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
 
 

@@ -148,7 +148,33 @@
 
 
 <div style="display: none">
+<!-- <div> -->
     <div id="printareaf">
+        <style>
+    #invoice_footer,  #invoice_footer>tr ,#invoice_footer>tr>td {
+        border: 0px!important;
+        font-weight: bold;
+    }
+    .footer {
+        position: fixed;
+        bottom: -100;
+        width: 100%;
+        text-align: center;
+        z-index: 99999999;
+        padding-top:5px;
+        border-top: 2px solid rgb(184 179 126)
+    }
+        div#bottomproducts_filter {
+            display: none;
+    }
+        table#middeltabl {
+            margin-bottom: 15px;
+    }
+        div#bottomproducts_info {
+            display: none;
+            height:0px!important;
+    }
+        </style>
         <table style="width: 100%;font-size: 12px;" id="detaprotabprint">
             <thead>
                 <tr>
@@ -190,7 +216,7 @@
                 
                   <tr>
                     <th  class="col-md-6">Client : <span id="prodClienpf"></span></th>
-   <th  class="col-md-6">Adresse : <span id="clientAdress"></span></th>
+                    <th  class="col-md-6">Adresse : <span id="clientAdress"></span></th>
                 </tr>
 
                 <tr>
@@ -218,39 +244,43 @@
                                 <tr>
                                     <th>Code</th>
                                     <th>Désignation</th>
-                                       <th>Unité</th>
+                                       <!-- <th>Unité</th> -->
                                     <th>Qte</th>
-                                    <th>Prix unitaire</th>
+                                    <th>Prix unitaire en &euro;</th>
                                     <th>TVA</th>
-                                    <th>PTTTC</th>
+                                    <th>PTTTC en &euro;</th>
                                 </tr>
                             </thead>
                             <tbody id="dataartlineobjectpf">
                             </tbody>
-                            <tbody>
+                            <tbody id="invoice_footer">
                                 <tr>
-                                    <td class="itemart" colspan="7" > </td>
+                                    <td class="itemart" colspan="6" > </td>
 
                                 </tr>
                                 <tr>
-                                    <td class="itemart" colspan="4" style="text-align: center;" >Total HTVA</td>
-                                    <td class="itemart" colspan="3" style="text-align: center;"  id="htva"></td>
+                                    <td class="itemart" colspan="3" >&nbsp; </td>
+                                    <td class="itemart" colspan="2" style="text-align: right;" >Total HTVA en &euro; : </td>
+                                    <td class="itemart" colspan="1" style="text-align: left;"  id="htva"></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="itemart" colspan="4" style="text-align: center;"  >TVA</td>
-                                    <td class="itemart" colspan="3" style="text-align: center;"   id="tva"></td>
+                                   <td  class="itemart" colspan="3" >&nbsp; </td>
+                                    <td class="itemart" colspan="2" style="text-align: right;"  >TVA  en &euro; :  </td>
+                                    <td class="itemart" colspan="1" style="text-align: left;"   id="tva"></td>
                                 </tr>
 
 
-                                <tr>
-                                    <td class="itemart" colspan="4" style="text-align: center;"  >Timbre</td>
-                                    <td class="itemart" colspan="3" style="text-align: center;"   id="timbre"></td>
-                                </tr>
+                                <!-- <tr>
+                                    <td style="border:0px" class="itemart" colspan="4" >&nbsp; </td>
+                                    <td class="itemart" colspan="2" style="text-align: right;"  >Timbre : </td>
+                                    <td class="itemart" colspan="1" style="text-align: left;"   id="timbre"></td>
+                                </tr> -->
 
                                 <tr>
-                                    <td class="itemart" colspan="4" style="text-align: center;"  >Totale TTC</td>
-                                    <td class="itemart" colspan="3" style="text-align: center;"   id="ttc"></td>
+                                    <td class="itemart" colspan="3" >&nbsp; </td>
+                                    <td class="itemart" colspan="2" style="text-align: right;"  >Totale TTC ( &#x20AC;) : </td>
+                                    <td class="itemart" colspan="1" style="text-align: left;"   id="ttc"></td>
                                 </tr>
 
                             </tbody>
@@ -272,7 +302,10 @@
                 </tr>
             </tbody>
         </table>
-
+            <div class="footer">
+                Microsoft Dynamics AX 2012 R3, Microsoft Dynamics AX 2012 R2, Microsoft Dynamics AX 2012 Feature Pack, Microsoft Dynamics AX 2012
+            Microsoft Dynamics AX 2012 R3, Microsoft Dynamics AX 2012 R2, Microsoft Dynamics AX 2012 Feature Pack, Microsoft Dynamics AX 2012
+            </div>
     </div>
 </div>
 

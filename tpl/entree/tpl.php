@@ -26,7 +26,7 @@
                             <label  class="entformentet" for="entBcolexercice">Exercice Bc</label>
                             <input required="" editmode type="text" class="form-control" id="entBcolexercice" name="entBcolexercice" placeholder="">
                         </div>
-                        <div class="form-group marbutton beetr">
+                        <div class="form-group marbutton beetr"> 
                             <label  class="entformentet" for="entContratcode">N° Contrat</label>
                             <input editmode type="text" class="form-control" id="entContratcode" name="entContratcode" placeholder="">
                         </div>
@@ -219,27 +219,27 @@
 
 
                 <tr>
-                    <th  class="col-md-4">N° Bc : <span id="entBcolcodep"></span></th>
+                    <!-- <th  class="col-md-4">N° Bc : <span id="entBcolcodep"></span></th> -->
                     <th  class="col-md-4">Date BL : <span id="entDateblp"></span></th>
                     <th  class="col-md-4 etrbep">Cours : <span id="entCoursp"></span></th>
                 </tr>
 
                 <tr>
-                    <th  class="col-md-4">Exercice Bc : <span id="entBcolexercicep"></span></th>
+                    <!-- <th  class="col-md-4">Exercice Bc : <span id="entBcolexercicep"></span></th> -->
                     <th  class="col-md-4">N° facture : <span id="entNumfacturep"></span></th>
                     <th  class="col-md-4">Observation : <span id="entObservationp"></span></th>
                 </tr>
 
 
                 <tr>
-                    <th  class="col-md-4">N° Contrat : <span id="entContratcodep"></span></th>
+                    <!-- <th  class="col-md-4">N° Contrat : <span id="entContratcodep"></span></th> -->
                     <th  class="col-md-4">Date Facture : <span id="entDatefacturep"></span></th>
                     <th  class="col-md-4">Fournisseur : <span id="entFournisseurcodep"></span></th>
                 </tr>
 
                 <tr>
-                    <th  class="col-md-4">Exercice Contrat : <span id="entContratexercicep"></span></th>
-                    <th  class="col-md-4">Type : <span id="entTypecodep"></span></th>
+                    <!-- <th  class="col-md-4">Exercice Contrat : <span id="entContratexercicep"></span></th> -->
+                    <!-- <th  class="col-md-4">Type : <span id="entTypecodep"></span></th> -->
 
                 </tr>
 
