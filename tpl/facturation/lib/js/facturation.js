@@ -116,7 +116,7 @@ function inti_dialog_non_editb(param) {
             "Imprimer": function () {
                 $("#printareab").printThis({
                     importCSS: true,
-                    pageTitle: "Production",
+                    pageTitle: "Facture",
                 })
             }
         },
@@ -481,7 +481,7 @@ function populate_list(data) {
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
 
                 html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";
@@ -502,7 +502,7 @@ function populate_list(data) {
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                //html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
 
                 html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";
@@ -543,7 +543,7 @@ function populate_list(data) {
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
 
 
