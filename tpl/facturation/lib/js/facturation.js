@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    _devise = "- n d";
+  
+    // console.log('rrrrrrrrrr : ' +r)
     actualise_stock();
 
     window.arttrace = "";
@@ -462,7 +464,10 @@ function populate_list(data) {
                $("#clientAdress").html(data.data[0].prodCodeClient.frsAdresse)
             
             
-            $("#prodDevisepf").html(data.data[0].prodDevise.deviseLibelle)
+            $("#prodDevisepf").html(data.data[0].prodDevise.deviseLibelle);
+
+             console.log("le devise de notre facture : ", data.data[0].prodDevise.deviseLibelle);
+             _devise = data.data[0].prodDevise.deviseLibelle;
             $("#prodCommercialepf").html(data.data[0].prodCommerciale.utinom);
 
             $("#dataartlineobject").html("");
@@ -519,7 +524,7 @@ function populate_list(data) {
                 thtva += pt;
                 ttva += (parseFloat(values.proddetailTva.tvaCode) * pt) / 100;
 
-                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc) + "</td>";
+                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc, _devise ) + "</td>";
                 html += "</tr>";
 
 
@@ -528,11 +533,20 @@ function populate_list(data) {
             })
 
 
+                // httes = formatNumber('454' );
+                // console.log('thtva 1 : ' + httes)
+                // httes = formatNumber('454.457883333' );
+                // console.log('thtva  2 : ' + httes)
 
-            $("#htva").html(sgsNumber(thtva));
-            $("#tva").html(sgsNumber(ttva));
+                // httes = formatNumber(454 );
+                // console.log('thtva  3 : ' + httes)
+                // httes = formatNumber(454.457883333 );
+                // console.log('thtva 4 : ' + httes)
+                // httvv = httes + '';
+            $("#htva").html(sgsNumber(thtva, _devise ));
+            $("#tva").html(sgsNumber(ttva, _devise ));
             // $("#timbre").html(sgsNumber(0.600));
-            $("#ttc").html(sgsNumber(ttc + 0.600));
+            $("#ttc").html(sgsNumber(ttc, _devise ));
 
 
 
