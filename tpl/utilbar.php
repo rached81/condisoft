@@ -19,6 +19,9 @@ $exelist = $rsexe->fetchAll();
 
 $nom = Zend_Auth::getInstance()->getIdentity()->UTINOM;
 $pnom = Zend_Auth::getInstance()->getIdentity()->UTIPNOM;
+
+$tableMag = new Zend_Db_Table('mag');
+
 ?>
 
 <div class="profile">
@@ -30,9 +33,13 @@ $pnom = Zend_Auth::getInstance()->getIdentity()->UTIPNOM;
 
             <select class="form-control" name="mag" id="mag">
                 
-                <?php foreach ($mag as $magitem) : ?>
-                    <option <?php if ($magslect == $magitem["MAGCOD"]) echo "selected='selected'"; ?> value="<?php echo $magitem["MAGCOD"]; ?>"> <?php echo $magitem["MAGCOD"]; ?> </option>
-                <?php endforeach; ?>
+                <?php foreach ($mag as $magitem) {
+                    $qrMag = $tableMag->select()->where("MAGCOD = ?", $magitem["MAGCOD"]);
+                    $rsMag = $qrMag->query();
+                    $magasin = $rsMag->fetchAll()[0];
+                    ?>
+                    <option <?php if ($magslect == $magitem["MAGCOD"]) echo "selected='selected'"; ?> value="<?php echo $magitem["MAGCOD"]; ?>"> <?php echo $magasin["MAGLIB"]; ?> </option>
+                <?php } ?>
                     
             </select>
 

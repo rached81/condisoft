@@ -529,6 +529,7 @@ function populate_list(data) {
 
 
                 $("#dataartlineobjectpf").append(html);
+                
 
             })
 
@@ -565,6 +566,7 @@ function populate_list(data) {
 
 
                 $("#dataartlineobjectpb").append(html);
+                
 
             })
 

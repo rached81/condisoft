@@ -152,7 +152,7 @@
 
 
 <div style="display: none">
-    <!-- <div> -->
+    <!-- <div style="width: 900px;"> -->
     <div id="printareaf">
         <style>
             #invoice_footer,
@@ -171,12 +171,26 @@
                 padding-top: 5px;
                 border-top: 2px solid rgb(184 179 126)
             }
-            .gris{
-                color: #D3D3D3!important;
+
+            .gris {
+                color: #D3D3D3 !important;
             }
-            .dark-gris, .dark-gris>span{
-                color: #808080!important;
+
+            .dark-gris,
+            .dark-gris>span {
+                color: #808080 !important;
             }
+
+            .dark-gris-txt,
+            .dark-gris-txt>span {
+                color: #707070 !important;
+            }
+
+            .fwn {
+                font-weight: normal !important;
+            }
+
+
             #pspdfkit-footer {
                 display: flow-root;
                 position: absolute;
@@ -199,67 +213,174 @@
                 display: none;
                 height: 0px !important;
             }
-            .adress-invoice, .adress-invoice>span{
-                color: #404040!important;
-                font-size:16px!important;
-                font-family:Arial!important;
+
+            .adress-invoice,
+            .adress-invoice>span {
+                /* color: #404040!important; */
+                font-size: 14px !important;
+                font-family: Arial !important;
                 margin-right: 10px;
                 margin-right: 10px;
-                
+
             }
-            .head-table, .head-table>th{
+
+            body {
+                -webkit-print-color-adjust: exact;
+                /*chrome & webkit browsers*/
+                color-adjust: exact;
+                /*firefox & IE */
+            }
+
+            .head-table,
+            .head-table>th,
+            .head-table>td {
                 background-color: rgb(184 179 126);
-                background-color: #ada66b!important;
-                color: #fff!important;
+                background-color: #ada66b !important;
+                color: #fff !important;
                 font-weight: bold;
-     
-                border: 1px solid #fff
+                font-size: 14px;
+
+                border: 1px solid #000
+            }
+
+            .fs14 {
+                font-size: 14px;
+            }
+
+            #notebefore {
+                width: 400px;
+                font-size: 16px;
+                font-style: italic;
+                margin-left: 20px;
+                margin-bottom: 10px;
+                font-weight: inherit;
+                font-family: Arial;
+                border-left: 2px solid #545454;
+                padding-left: 7px;
+                line-height: 23px;
+
+            }
+
+            #noteafter {
+                width: 550px;
+                margin-top: 25px;
+                font-size: 14px;
+                margin-left: 20px;
+                margin-bottom: 10px;
+                font-weight: inherit;
+                font-family: Arial;
+                color: #000;
+                line-height: 23px;
+                /* border-left: 2px solid #545454; */
+                /* padding-left: 7px; */
+
+            }
+
+            table.tabprint tbody>tr>td,
+            table.tabprint thead>tr>th {
+                text-align: left;
+            }
+
+            @media print {
+                body {
+                    -webkit-print-color-adjust: exact;
+                    /*chrome & webkit browsers*/
+                    color-adjust: exact;
+                    /*firefox & IE */
+
+                }
+
+                table.tabprint {
+                    border-collapse: unset;
+                }
+
+                .head-table,
+                .head-table>th,
+                .head-table>td {
+                    background-color: rgb(184 179 126);
+                    background-color: #ada66b !important;
+                    color: #fff !important;
+                    font-weight: bold;
+                    font-size: 14px;
+
+                    border: 1px solid #000
+                }
+
+                #dataartlineobjectpf,
+                #dataartlineobjectpf>tr {
+                    border: 1px solid #000
+                }
             }
         </style>
         <table style="width: 100%;font-size: 12px;" border=0 id="detaprotabprint">
             <thead>
                 <tr>
-                    <th colspan="3" style="width:70%">
-                        <div style="display: inline-block;float: left;">
-                            <div style="">
-                                <img src="<?php echo WEBROOT ?>/lib/img/logo.jpg" width="100%" />
-                            </div>
-                            
+                    <th colspan="4" >
+                        <table style="width: 100%;font-size: 12px;" border=0 id="detaprotabprint">
+                            <thead>
+                                <tr>
+                                    <th colspan="3" style="width:65%">
+                                        <div style="display: inline-block;float: left;">
+                                            <div>
+                                                <img src="<?php echo WEBROOT ?>/lib/img/logo.jpg" width="100%" />
+                                            </div>
 
-                        </div>
-                        <div class="adress-invoice">
-                        <div class="dark-gris" > 
-                        <div class="dark-gris" style="font-size:33px;font-family:Arial, Helvetica, sans-serif;padding-top:10px">HAZOUA</div>
-                          <div class="dark-gris"> Avenue Almaghreb Alarabie Hazoua 2223, Tozeur</div>
-                          <div class="dark-gris">Tel: 00 216 76 44 01 03</div>
-                          <div class="dark-gris">Fax: 00 216 76 44 01 02</div>
-                          <div class="dark-gris">E-mail:  benighreb@gmail.com</div>
 
-                            </div>
-                      
+                                        </div>
+                                        <div class="adress-invoice">
+                                            <div class="dark-gris">
+                                                <div class="dark-gris" style="font-size:33px;font-family:Arial, Helvetica, sans-serif;padding-top:10px">HAZOUA</div>
+                                                <div class="dark-gris-txt fs14 fwn"> Avenue Almaghreb Alarabie Hazoua 2223, Tozeur</div>
+                                                <div class="dark-gris-txt fs14 fwn">Tel: 00 216 76 44 01 03</div>
+                                                <div class="dark-gris-txt fs14 fwn">Fax: 00 216 76 44 01 02</div>
+                                                <div class="dark-gris-txt fs14 fwn">E-mail: benighreb@gmail.com</div>
+
+                                            </div>
+
+                                    </th>
+                                    <th style="text-align:right;padding-right:20px!important;">
+                                        <div class="dark-gris" style="font-size: 22px!important;font-family: Arial!important;padding-bottom:5px">
+                                            FACTURE
+                                        </div>
+                                        <div class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
+                                            N° : <span id="prodCodeFacturepf"></span>
+                                        </div>
+                                        <div class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
+                                            <!-- 04 Avril 2022  -->
+                                            DATE:
+                                            <?php
+                                            $date = new Zend_Date();
+                                            echo $date->toString("dd-MM-yyyy");
+                                            ?>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+
                     </th>
-                    <th>&nbsp;</th>
+
                 </tr>
-                <tr>
+                <!-- <tr>
                   
                     <th colspan="4" class="gris"style="padding-right:20px!important;width:30%;text-align:right; font-weight: bolder;font-size: 16px;color:#9a9a9a!important;">
-                        <div class="dark-gris" style="font-size: 25px!important;font-family: Arial!important;padding-bottom:15px">
+                        <div class="dark-gris" style="font-size: 22px!important;font-family: Arial!important;padding-bottom:5px">
                             FACTURE
                         </div>
-                        <div  class="dark-gris" style="margin-top: 5px;">
+                        <div  class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
                             N° :  <span id="prodCodeFacturepf"></span>
                         </div>
-                        <div  class="dark-gris" style="margin-top: 5px;">
-                            <!-- 04 Avril 2022  -->
+                        <div  class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
+                            04 Avril 2022 
                             DATE: 
                             <?php
-                                $date = new Zend_Date();
-                                echo $date->toString("dd-MM-yyyy");
+                            $date = new Zend_Date();
+                            echo $date->toString("dd-MM-yyyy");
                             ?>
                         </div>
 
                     </th>
-                </tr>
+                </tr> -->
 
                 <tr>
                     <td colspan="4" class="spacingpring"></td>
@@ -267,42 +388,42 @@
                 </tr>
 
                 <tr>
-                    <th  width="55%" colspan="2" >
+                    <th width="55%" colspan="2">
                         <!-- Code facture : <span id="prodCodeFacturepf"></span> -->
                     </th>
-                    <th class="adress-invoice" width="45%" colspan="2"  >
-                    <div class="dark-gris" style="font-size:25px">DESTINATAIRE</div>    
+                    <th class="adress-invoice" width="45%" colspan="2">
+                        <div class="dark-gris" style="font-size:22px">DESTINATAIRE</div>
                     </th>
                 </tr>
                 <tr>
-                    <th  width="55%" colspan="2" >
+                    <th width="55%" colspan="2">
                         <!-- Code facture : <span id="prodCodeFacturepf"></span> -->
                     </th>
-                    <th class="adress-invoice"  width="45%" colspan="2" >
-                       Client : <span id="prodClienpf"></span>
-                
+                    <th class="adress-invoice dark-gris-txt fwn" width="45%" colspan="2">
+                        Client : <span id="prodClienpf"></span>
+
                     </th>
                 </tr>
                 <tr>
-                    <th  width="55%" colspan="2" >
+                    <th width="55%" colspan="2">
                         <!-- Client : <span id="prodClienpf"></span> -->
                     </th>
-                    <th  class="adress-invoice" width="45%" colspan="2"  >Adresse : <span id="clientAdress"></span></th>
+                    <th class="adress-invoice dark-gris-txt fwn" width="45%" colspan="2">Adresse : <span id="clientAdress"></span></th>
                 </tr>
 
                 <tr>
-                    <th colspan="2"  width="55%">
+                    <th colspan="2" width="55%">
 
                         <!-- Exercice facture : <span id="prodExerciceFacturepf"></span> -->
                     </th>
-                    <th class="adress-invoice" colspan="2"  >Devise : <span id="prodDevisepf"></span></th>
+                    <th class="adress-invoice  dark-gris-txt fwn" colspan="2">Devise : <span id="prodDevisepf" class="dark-gris-txt fwn"> </span></th>
                 </tr>
 
                 <tr>
-                    <th colspan="2" >
+                    <th colspan="2">
                         <!-- Commercial : <span id="prodCommercialepf"></span> -->
                     </th>
-                    <th class="adress-invoice" colspan="2"  >Matricule Fiscale : <span id="frsMf"></span></th>
+                    <th class="adress-invoice  dark-gris-txt fwn" colspan="2">Matricule Fiscale : <span id="frsMf"></span></th>
                 </tr>
 
 
@@ -314,10 +435,13 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="contentpring">
+                        <div id="notebefore">
+                            Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
+                        </div>
 
                         <table class="table table-condensed table-bordered tabprint" style="font-size: 12px;">
-                            <thead>
-                                <tr  class="head-table" style="">
+                            <thead class="head-table">
+                                <tr class="head-table">
                                     <th>Code</th>
                                     <th>Désignation</th>
                                     <!-- <th>Unité</th> -->
@@ -327,7 +451,7 @@
                                     <th>PTTTC en &euro;</th>
                                 </tr>
                             </thead>
-                            <tbody id="dataartlineobjectpf">
+                            <tbody id="dataartlineobjectpf" style="border: 1px solid #000">
                             </tbody>
                             <tbody id="invoice_footer">
                                 <tr>
@@ -361,7 +485,9 @@
 
                             </tbody>
                         </table>
-
+                        <div id="noteafter">
+                            Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
+                        </div>
 
                     </td>
                 </tr>
@@ -379,9 +505,9 @@
             </tbody>
         </table>
         <div class="footer">
-        Adresse: Avenue Almaghreb Alarabie Hazoua 2223, Tozeur - Tel: 00 216 76 44 01 03
-        Société à responsabilité limitée (SARL) - RC : B0XXXXXXXXX - Matricule fiscal : 159XXXXXX/A/M/000
-IBAN : TN59 0860 XXXX XXXX XXXX XXXX 
+            Adresse: Avenue Almaghreb Alarabie Hazoua 2223, Tozeur - Tel: 00 216 76 44 01 03
+            Société à responsabilité limitée (SARL) - RC : B0XXXXXXXXX - Matricule fiscal : 159XXXXXX/A/M/000
+            IBAN : TN59 0860 XXXX XXXX XXXX XXXX
 
         </div>
     </div>
@@ -398,7 +524,7 @@ IBAN : TN59 0860 XXXX XXXX XXXX XXXX
                 <tr>
                     <th colspan="4">
                         <div style="display: inline-block;float: left;">
-                            <div style="">
+                            <div>
                                 <img src="<?php echo WEBROOT ?>/lib/img/logo.jpg" width="100%" />
                             </div>
                         </div>
