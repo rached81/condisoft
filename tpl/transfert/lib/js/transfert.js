@@ -30,7 +30,11 @@ $(document).ready(function() {
     })
 
     $("#valdartline").click(function() {
+        console.log("test test test debut");
+
         $("#addartbeform").submit();
+
+        console.log("test test test fin");
     })
 
     var validateur = $("#addartbeform").validate({
@@ -472,6 +476,7 @@ function populate_list(data) {
 
 
 function ajout_article_trans(data) {
+    console.log("callback suis ! ")
 
     if (data.data == 1) {
 
