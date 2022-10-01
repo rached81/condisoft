@@ -22,7 +22,7 @@ class mainframe {
          set_exception_handler(function($e) {
                if (Zend_Auth::getInstance()->getIdentity()->IDUTIL == 1) {
                     
-                       echo "Uncaught exception: " , $exception->getMessage(), "\n";
+                       echo "Uncaught exception: " , $e->getMessage(), "\n";
                 } else {
                 Exceptions::setLastException("Erreur system Merci de contacter un administrateur");
                 echo json_encode(array("etat" => "2"));
