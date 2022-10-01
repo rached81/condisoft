@@ -72,12 +72,12 @@ class transfert extends controler {
         
         if (!empty($params["transMagliv"])) {
             
-            $stk = Metier_Stock::get_art_stk(array(
+            $stk = Metier_Stock::get_stkval(array(
                 "exe" => $params["exe"],
                 "art" => $params["transArtcode"],
                 "mag" => $params["transMagliv"]
             ));
-            $this->dd($stk);
+            // $this->dd($stk);
 
             if ($params["transQte"] <= $stk[0]["finale"] && $params["transQte"] != 0) {
                 echo json_encode(array("etat" => "0", "data" => 1, "qte" => $stk[0]["finale"]));
