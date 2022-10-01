@@ -62,7 +62,12 @@ $(document).ready(function() {
     $("#artEtatCode").select2()
 
     $("#dialogs").hide();
-
+    /*tabRegelTransfert[demadeurId] = [listExpideteurId];*/
+    tabRegelTransfert = [];
+    tabRegelTransfert[3] = [1, 2];
+    tabRegelTransfert[2] = [1, 3];
+    tabRegelTransfert[4] = [1, 2, 3];
+    tabRegelTransfert[5] = [1, 2, 3];
     $("#btn_nouveau_trans").click(function() {
         var param = {}
         param.exe = $("#exe").val();
@@ -71,11 +76,31 @@ $(document).ready(function() {
             $("#addform").attr("action", "ajout_transfert");
             $("#transMagdem").val($("#mag").val());
             get_ajax_data("/main/asyn_get_mag", {}, function(data) {
+                
                 $("#transMagliv").html("");
                 $.each(data.mag, function(index, value) {
-                    if (parseInt(value.MAGCOD) !== parseInt($("#mag").val())) {
-                        $("#transMagliv").append('<option value="' + value.MAGCOD + '">' + value.MAGCOD + '</option>');
+                    if(parseInt($("#mag").val()) !== 1){
+                        $("#transMagliv").parent().show();
+                    // console.log(tabRegelTransfert[parseInt($("#mag").val())].indexOf(parseInt(value.MAGCOD)) );
+                    if (parseInt(value.MAGCOD) !== parseInt($("#mag").val()) ) {
+                        if(tabRegelTransfert[parseInt($("#mag").val())].indexOf(parseInt(value.MAGCOD)) !== -1){
+                            $("#transMagliv").append('<option value="' + value.MAGCOD + '">' + value.MAGLIB + '</option>');
+
+                        }
                     }
+                    else
+                    {
+
+                        $("#transMagdem").val(value.MAGLIB);
+                    }
+                }
+                else{
+
+                    $("#transMagliv").parent().hide();
+                    if (parseInt(value.MAGCOD) == parseInt($("#mag").val()) ) {
+                        $("#transMagdem").val(value.MAGLIB);
+                    }
+                }
                 })
             })
             edit_mode();

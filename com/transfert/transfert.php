@@ -22,7 +22,7 @@ class transfert extends controler {
 
         $result = $em->createQueryBuilder();
         $trans = $result->select('a', 'b')
-                        ->from('StktransEntete', 'a')
+                        ->from('StkTransEntete', 'a')
                         ->leftJoin('a.transEtatcode', 'b')
                         ->where('a.transEtatcode != :transEtatcode')->setParameter('transEtatcode', 93);
 
@@ -103,7 +103,7 @@ class transfert extends controler {
 
         $result = $em->createQueryBuilder();
         $trans = $result->select('a', 'b')
-                        ->from('StktransEntete', 'a')
+                        ->from('StkTransEntete', 'a')
                         ->leftJoin('a.transEtatcode', 'b')
                         ->where('a.transEtatcode != :transEtatcode')->setParameter('transEtatcode', 93);
 
@@ -116,7 +116,7 @@ class transfert extends controler {
 
         $results = $em->createQueryBuilder();
         $transs = $results->select('a', 'c')
-                ->from('StktransDetail', 'a')
+                ->from('StkTransDetail', 'a')
                 ->leftJoin('a.transArtcode', 'c');
 
 
@@ -141,7 +141,7 @@ class transfert extends controler {
         Metier_Sgs::get_exercice($params["transExercice"]);
 
         $em = Model::$em;
-        $trans = new StktransEntete();
+        $trans = new StkTransEntete();
 
         $em->getConnection()->beginTransaction();
         $trans->setTransCode($params["transCode"]);
@@ -160,7 +160,7 @@ class transfert extends controler {
         $i = 1;
         foreach ($params["transCodes"] as $itemdet) {
 
-            $transd = new StktransDetail();
+            $transd = new StkTransDetail();
             $transd->setTransCode($trans);
             $transd->setTransSeq($i);
             $transd->setTransExercice($params["transExercice"]);
@@ -204,7 +204,7 @@ class transfert extends controler {
 
         foreach ($params["transCodes"] as $itemdet) {
 
-            $transd = $em->getRepository("StktransDetail")->find(array(
+            $transd = $em->getRepository("StkTransDetail")->find(array(
                 "transCode" => $params["transCode"],
                 "transArtcode" => $itemdet["transArtcode"],
             ));
@@ -219,7 +219,7 @@ class transfert extends controler {
 
         foreach ($params["transCodes"] as $itemdet) {
 
-            Metier_Stock::get_stk(array(
+            Metier_Stock::get_stkval(array(
                 "exe" => $params["transExercice"],
                 "art" => $itemdet["transArtcode"],
                 "mag" => $params["mag"],
@@ -250,7 +250,7 @@ class transfert extends controler {
         $p = $q->execute();
 
         foreach ($transobj[1] as $artitem) {
-            Metier_Stock::get_stk(array(
+            Metier_Stock::get_stkval(array(
                 "exe" => $transobj[0][0]["transExercice"],
                 "art" => $artitem["trans_artCode"],
                 "mag" => $transobj[0][0]["transMagdem"],
