@@ -98,16 +98,30 @@ $(document).ready(function () {
             })
         });
 
-$("#journeQte").livequery(function () {
-    $(this).mouseout(function(){
-        console.log("change change change change ")
-        if($("#journeQte").html() ==""){
-            $(this).parent().parent().find(".validproddetail").prop('checked', false)
+    // $("#journeQte").mouseout(function(){
+    //     console.log("change change change change ")
+    //     if($("#journeQte").html() ==""){
+    //         $(this).parent().parent().find(".validproddetail").prop('checked', false)
+    //         $("#weight").html("-")
         
-        }
+    //     }
+    //     else{
+    //         journeQte = parseInt($("#journeQte").html());
+    //         unitedWeight = parseFloat($("#weightArtUnite").val())
+    //         console.log(" unitedWeight : "+ unitedWeight);
+    //         console.log(" journeQte : "+ journeQte);
+    //         if(!isNaN(journeQte)){
 
-        })
-    });
+    //             total = unitedWeight*journeQte;
+    //             total = total.toFixed(3);
+    //             $("#weight").html(" " +total)
+    //         }
+
+    //     }
+
+
+    //     });
+  
 /**
  * END : controle change value in detail production article
  */
@@ -123,7 +137,7 @@ $("#journeQte").livequery(function () {
                 detartFrs = $(this).parent().parent().find(".detartFrs").length;
                 journeQte = $(this).parent().parent().find("#journeQte").html();
                 journeDatePeromption = $(this).parent().parent().find(".hasDatepicker").val();
-                console.log(detartFrs + " - " + journeQte + " - " + journeDatePeromption);
+                //console.log(detartFrs + " - " + journeQte + " - " + journeDatePeromption);
                 msg="";
                 if(!detartFrs){
                     msg += "<br>La matière première";
@@ -208,7 +222,7 @@ function reset_form() {
        
     })
     
-    console.log("$('#addartbeform').reset() executed ! ");
+    //console.log("$('#addartbeform').reset() executed ! ");
     // $("#addartbeform").trigger("reset");
     $("#addform").find("select").each(function () {
         $(this).val("").trigger("change")
@@ -307,6 +321,28 @@ function inti_dialog(param) {
         height: $(window).height() * 0.9,
         width: $(window).width() * 0.98,
     })
+
+   
+$("#journeQte").mouseout(function(){
+    // console.log("change change change change ")
+    if($("#journeQte").html() ==""){
+        $(this).parent().parent().find(".validproddetail").prop('checked', false)
+        $("#weight").html("-")
+    
+    }
+    else{
+        journeQte = parseInt($("#journeQte").html());
+        unitedWeight = parseFloat($("#weightArtUnite").val())
+        // console.log(" unitedWeight : "+ unitedWeight);
+        // console.log(" journeQte : "+ journeQte);
+        if(!isNaN(journeQte)){
+
+            total = unitedWeight*journeQte
+            total = total.toFixed(3);
+            $("#weight").html(" " +total)
+        }
+    }
+});
 
     $("#dialogs").dialog("open");
 
@@ -411,7 +447,7 @@ function populate_list(data) {
                 $("#dataartlineobject").html("");
                
                 $.each(data.datas, function (indexs, values) {
-
+                            // console.log(values);
                     var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
                     html += "<td id='consProdId' class='itemart' >"
                     if (values.consProdId.length != 0) {
@@ -435,13 +471,17 @@ function populate_list(data) {
                     html += "</td>";
                     html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                     html += "<td id='artDesign' >" + values.proddetailArticleCode.artDesignation + "</td>";
-                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "</td>";
                     if (values.consProdId.length == 0) {
-                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
+                        html += "<td id='journeQte'  contenteditable='true' class='itemart inputdecorator' ></td>";
+                    } else {
+                        html += "<td id='journeQte'  contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
+                    }
+                    html += "<td id='weight' class='itemart'   > - </td>";
+                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
+                    if (values.consProdId.length == 0) {
                         html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                     } else {
-
-                        html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
+                        
                         html += "<td id='journeDatePeromption' class='itemart' >" + '<input value="' + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + '" type="text" datepick>' + "</td>";
                     }
 
@@ -450,7 +490,7 @@ function populate_list(data) {
                     html += '<td id="oper" class="col-3 " > '
                    // html += '<div class="ui-dialog-buttonpane ui-widget-content "><div class="ui-dialog-buttonset">';
                     html += '<button type="button" class="btn px-2 btn-primary btn-xs consproddetailbtn"   style=""> Selectioner </button>';
-                    html += '&nbsp;&nbsp;&nbsp; sauvgarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
+                    html += '&nbsp;&nbsp;&nbsp; sauvegarder <input class="btn  validproddetail btn-primary btn-xs" type="checkbox" id="check-' + values.prodDetailId + '" /> ';
                    // html += '</div></div>'
                     html += '</td>'
                     html += "</tr>";
@@ -560,17 +600,21 @@ function populate_list(data) {
                 html += "</td>";
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                   html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td id='weight' class='itemart'  > - </td>";
+                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
+                  // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
+                    html += "<td id='journeQte' onmouseout='updateWeight(this)' contenteditable='true' class='itemart inputdecorator' ></td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
 
-                    html += "<td id='journeQte'   class='itemart' > " + values.consProdId[0].journeQte + "</td>";
+                    html += "<td id='journeQte' onmouseout='updateWeight(this)'   class='itemart' > " + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + "</td>";
                 }
 
                 html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
+                // html += "<td id='weight' class='itemart' >" + values.qteProduite + "</td>";
+
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
                 html += '<td id="oper">';
                 html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button> ';
@@ -673,6 +717,26 @@ function get_journe_detail() {
             genprod_mode();
 
             edit_mode();
+            // $("#journeQte").mouseout(function(){
+            //     console.log("change change change change ")
+            //     if($("#journeQte").html() ==""){
+            //         $(this).parent().parent().find(".validproddetail").prop('checked', false)
+            //         $("#weight").html("-")
+                
+            //     }
+            //     else{
+            //         journeQte = parseInt($("#journeQte").html());
+            //         unitedWeight = parseFloat($("#weightArtUnite").val())
+            //         console.log(" unitedWeight : "+ unitedWeight);
+            //         console.log(" journeQte : "+ journeQte);
+            //         if(!isNaN(journeQte)){
+            
+            //             total = unitedWeight*journeQte
+            //             total = total.toFixed(3);
+            //             $("#weight").html("" +total)
+            //         }
+            //     }
+            // });
 
             $.each(data.data[0], function (index, value) {
 
@@ -730,19 +794,32 @@ function get_journe_detail() {
                     })
                 }
 
+                if (values.consProdId.length == 0) {
+                    tot ='-'
+                }else{
+
+                    tot = parseInt(values.consProdId[0].journeQte)*parseFloat(values.proddetailArticleCode.artWeight)
+                }
+
                 html += "</td>";
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td  id='artDesign' >" + values.proddetailArticleCode.artDesignation + "</td>";
-                  html += "<td  id='artUnit' >" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
+                    html += "<td id='journeQte' contenteditable='true' onmouseout='updateWeight(this)' class='itemart inputdecorator' ></td>";
+                } else {
+
+                    html += "<td id='journeQte'  onmouseout='updateWeight(this)' contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
+                }
+                html += "<td id='weight' class='itemart'  > " + tot + " </td>";
+                html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
+                if (values.consProdId.length == 0) {
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
                     console.log(values.consProdId)
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input value="' + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + '" type="text" datepick>' + "</td>";
                 }
                 html += "<td id='qteProduite' class='itemart'  >" + values.qteProduite + "</td>";
+                
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
                 html += '<td id="oper">';
                 html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button>';
@@ -757,6 +834,7 @@ function get_journe_detail() {
             $("#addform").attr("action", "gen_data");
 
             inti_dialog();
+  
 
         });
     } else if (window.mode == "c") {
@@ -837,17 +915,24 @@ function get_journe_detail() {
                 html += "</td>";
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                   html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
-                    html += "<td id='journeQte' contenteditable='true' class='itemart inputdecorator' ></td>";
+                    html += "<td id='journeQte' onmouseout='updateWeight(this)' contenteditable='true' class='itemart inputdecorator' ></td>";
+                } else {
+
+                    html += "<td id='journeQte' onmouseout='updateWeight(this)'  class='itemart' >" + values.consProdId[0].journeQte + "</td>";
+                }
+                html += "<td id='weight' class='itemart'  > - </td>";
+                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
+                
+                if (values.consProdId.length == 0) {
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
                 } else {
 
-                    html += "<td id='journeQte'   class='itemart' >" + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + "</td>";
                 }
 
                 html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
+               // html += "<td id='weight' class='itemart' >" + values.qteProduite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
                 html += '<td id="oper">'; 
                 html += '<button class="btn btn-primary btn-xs consproddetailbtn"   style="display: inline-block;"> Selectioner </button>';
@@ -925,6 +1010,7 @@ function validprod_mode() {
     })
 }
 function ajout_article_data(data) {
+    console.log(data)
 
     if (data.etat == 0) {
 
@@ -933,7 +1019,7 @@ function ajout_article_data(data) {
         var artfrs = $("#proddetailArticleCodes").val();
         var artfrsarray = artfrs.split("-");
         window.formapp.qtestk = [];
-        console.log(data.artType);
+        // console.log(data.artType);
         
         $(".selectedProdDet").find("#consProdId").find(".detartFrs").each(function () {
           
@@ -1123,6 +1209,35 @@ function valid_data() {
             $("#dialogs").dialog("close");
         }
     })
+
+}
+
+
+function updateWeight(elem){
+    console.log("change change change change updateWeight", $(elem).parent().parent().prop("id"))
+
+    tbodyId = $(elem).parent().parent().prop("id");
+    // $(test).text(10)
+    // console.log("$(test).text()" , $(elem).text())
+        if($(elem).text() ==""){
+            // console.log('oui oui !');
+            $(elem).parent().parent().find(".validproddetail").prop('checked', false)
+            $("#"+ tbodyId).find("#weight").html("-")
+        
+        }
+        else{
+            journeQte = parseInt($(elem).text());
+            unitedWeight = parseFloat($("#"+ tbodyId).find("#weightArtUnite").val())
+            // console.log(" unitedWeight : "+ unitedWeight);
+            // console.log(" journeQte : "+ journeQte);
+            if(!isNaN(journeQte)){
+
+                total = unitedWeight*journeQte
+                total = total.toFixed(3);
+                $("#"+ tbodyId).find("#weight").html("" +total)
+            }
+
+        }
 
 }
 

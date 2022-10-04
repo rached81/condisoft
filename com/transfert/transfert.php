@@ -53,19 +53,7 @@ class transfert extends controler {
 
         echo json_encode(array("data" => $transarray, "etat" => 0));
     }
-    public function dump($var)
-    {
-        echo "<pre>";
-        print_r($var);
-        echo "</pre>";
-    }
-    public function dd($var)
-    {
-        echo "<pre>";
-        print_r($var);
-        echo "</pre>";
-        die;
-    }
+   
     public function asyn_chk_art_trans() {
 
         $params = $this->get_passed_vars("data");

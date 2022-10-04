@@ -350,6 +350,7 @@ function populate_list(data) {
             $("#artStockMinimale").val(data.data.data[0].g_artStockminimale)
             $("#artPrix").val(data.data.data[0].g_artPrix)
             $("#artTva").val(data.data.data[0].g_artTva)
+            $("#artWeight").val(data.data.data[0].g_artWeight)
             $("#artUnite").val(data.data.data[0].g_artUnite)
             $("#frsArtref").val(data.data.data[0].p_frsArtref)
             setimage(path_base + "/" + "imgs" + "/" + data.data.data[0].g_artImage, "#articleimage")
@@ -395,6 +396,7 @@ function populate_list(data) {
 
             $("#artPrix").val(data.data.data[0].g_artPrix)
             $("#artTva").val(data.data.data[0].g_artTva);
+            $("#artWeight").val(data.data.data[0].g_artWeight);
             $("#artUnite").val(data.data.data[0].g_artUnite);
 
             $("#frsArtref").val(data.data.data[0].p_frsArtref)

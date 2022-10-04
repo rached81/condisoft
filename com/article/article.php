@@ -39,7 +39,8 @@ class article extends controler {
         }
 
         $artrs = $art->getQuery()->getScalarResult();
-        
+
+        // $this->dd($artrs);
         $i = 0;
         foreach ($artrs as $art){
             if($art['g_artClass'] == 1 ){
@@ -210,6 +211,7 @@ class article extends controler {
 
         $art->setArtPrix($params["artPrix"]);
         $art->setArtTva($params["artTva"]);
+        $art->setArtWeight($params["artWeight"]);
         $art->setArtClass($params["artClass"]);
         $art->setArtUnite($params["artUnite"]);
 
@@ -321,21 +323,22 @@ class article extends controler {
             }
         }
 
-
-
+        
         $art->setArtDesignation($params["artDesignation"]);
-
+        
         //$art->setArtDatecreation(new DateTime($params["artDatecreation"]));
         $art->setArtDelaisLivraison($params["artDelaislivraison"]);
         $art->setArtDescription($params["artDescription"]);
         $art->setArtStockminimale($params["artStockMinimale"]);
         $art->setArtPrix($params["artPrix"]);
         $art->setArtTva($params["artTva"]);
+        $art->setArtWeight($params["artWeight"]);        
         $art->setArtClass($params["artClass"]);
         $art->setArtCategoriecode($em->find("StkCategorieArticle", $params["artCategoriecode"]));
         $art->setArtEtatcode($em->find("StkEtat", $params["artEtatCode"]));
         $art->setArtUnite($params["artUnite"]);
-
+        
+        // $this->dd($art->getArtWeight());
         $em->persist($art);
         $em->flush();
 

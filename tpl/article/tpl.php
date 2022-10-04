@@ -147,7 +147,14 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="artWeight" class="col-md-12 control-label">Poids en Kg</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" editmode class="form-control" name="artWeight" id="artWeight" placeholder=" Le Poids de l'article">
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="artTva" class="col-md-12 control-label">TVA</label>

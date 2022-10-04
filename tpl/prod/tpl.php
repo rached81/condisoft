@@ -93,8 +93,9 @@
                                 
                                 <th>Code produit conditioné <br> -</th>
                                 <th>Désignation produit conditioné <br> -</th>
+                                <th>Qte produite <br> -</th>
+                                <th >Poids <br> -</th>
                                  <th>Unité <br> -</th>
-                                 <th>Qte produite <br> -</th>
                                   <th> D.L.C <br> -</th>
                                    <th>Qte autres journées <br> -</th>
                                   <th >Qte demmandé<br> -</th>

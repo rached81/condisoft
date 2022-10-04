@@ -310,6 +310,21 @@ class controler {
         }
     }
 
+
+    public function dump($var)
+    {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+    }
+    public function dd($var)
+    {
+        echo "<pre>";
+        print_r($var);
+        echo "</pre>";
+        die;
+    }
+
 }
 
 ?>

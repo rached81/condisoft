@@ -123,6 +123,12 @@ class StkArticle
      */
     private $artTva;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="art_weight", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $artWeight;
 
     /**
      * @var \StkCategorieArticle
@@ -467,6 +473,8 @@ class StkArticle
         return $this;
     }
 
+
+    
     /**
      * Get artTva
      *
@@ -476,6 +484,44 @@ class StkArticle
     {
         return $this->artTva;
     }
+
+
+
+    /**
+     * Set artWeight
+     *
+     * @param float $artWeight
+     *
+     * @return StkArticle
+     */
+    public function setArtWeight($artWeight)
+    {
+        $this->artWeight = $artWeight;
+
+        return $this;
+    }
+
+
+    
+    /**
+     * Get artWeight
+     *
+     * @return float
+     */
+    public function getArtWeight()
+    {
+        return $this->artWeight;
+    }
+    
+
+
+
+    
+
+
+
+
+
 
     /**
      * Set artCategoriecode
