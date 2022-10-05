@@ -34,8 +34,9 @@
                         </div>
                         <br>
                         <div class="form-group marbutton">
-                            <label  class="transformentet"  for="transDate">Mag demandeur</label>
-                            <input  required=""  editmode type="text" readonly="readonly" class="form-control" id="transMagdem" name="transMagdem" placeholder="">
+                            <label  class="transformentet"  for="transDate">Mag demandeur : </label>
+                            <span id="labelMagDemandeur" style="font-weight:bold"></span>
+                            <input  required=""  editmode type="hidden" readonly="readonly" class="form-control" id="transMagdem" name="transMagdem" placeholder="">
                         </div>
 
                         <div class="form-group marbutton">

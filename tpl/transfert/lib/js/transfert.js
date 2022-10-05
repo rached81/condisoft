@@ -30,11 +30,11 @@ $(document).ready(function() {
     })
 
     $("#valdartline").click(function() {
-        console.log("test test test debut");
+        
 
         $("#addartbeform").submit();
 
-        console.log("test test test fin");
+       
     })
 
     var validateur = $("#addartbeform").validate({
@@ -79,11 +79,14 @@ $(document).ready(function() {
                 
                 $("#transMagliv").html("");
                 $.each(data.mag, function(index, value) {
+                    console.log('value = ', value)
                     if(parseInt($("#mag").val()) !== 1){
+
                         $("#transMagliv").parent().show();
-                    // console.log(tabRegelTransfert[parseInt($("#mag").val())].indexOf(parseInt(value.MAGCOD)) );
+                     console.log(tabRegelTransfert[parseInt($("#mag").val())].indexOf(parseInt(value.MAGCOD)) );
                     if (parseInt(value.MAGCOD) !== parseInt($("#mag").val()) ) {
                         if(tabRegelTransfert[parseInt($("#mag").val())].indexOf(parseInt(value.MAGCOD)) !== -1){
+                            console.log('value.MAGLIB : ', value.MAGLIB)
                             $("#transMagliv").append('<option value="' + value.MAGCOD + '">' + value.MAGLIB + '</option>');
 
                         }
@@ -91,14 +94,16 @@ $(document).ready(function() {
                     else
                     {
 
-                        $("#transMagdem").val(value.MAGLIB);
+                        $("#labelMagDemandeur").html(value.MAGLIB);
+                        $("#transMagdem").val(value.MAGCOD);
                     }
                 }
                 else{
 
                     $("#transMagliv").parent().hide();
                     if (parseInt(value.MAGCOD) == parseInt($("#mag").val()) ) {
-                        $("#transMagdem").val(value.MAGLIB);
+                        $("#labelMagDemandeur").html(value.MAGLIB);
+                        $("#transMagdem").val(value.MAGCOD);
                     }
                 }
                 })
@@ -282,18 +287,23 @@ function inti_dialog_liv(param) {
 
 
 }
-
+magasins = [];
+magasins[1] = 'Reception';
+magasins[2] = 'Semi-fini';
+magasins[3] = 'Production';
+magasins[4] = 'Produit Fini';
+magasins[5] = 'Dechet';
 function populate_list(data) {
 
     var modifier = {};
     modifier.titre = "Mise à jour"
     modifier.attr = ["a_transCode"]
-    modifier.class = "modifierbtn"
     modifier.fnct = function(param) {
 
         get_ajax_data("/transfert/asyn_get_trans_object", param, function(data) {
             reset_form();
             edit_mode();
+            console.log(data.data[0])
 
             $.each(data.data[0], function(index, value) {
 
@@ -301,10 +311,15 @@ function populate_list(data) {
                     if ($("#" + index)) {
                         if ($("#" + index).prop("tagName") == "SELECT") {
                             $("#" + index).val(value).trigger("change")
+                            $('#' + index + '  option[value=' + value + ']').text(magasins[value])
+                            console.log(index)
                         } else {
                             if (typeof value.date != 'undefined') {
                                 $("#" + index).val(dateformat(value.date.split(' ')[0]))
                             } else {
+                                if(index == 'transMagdem'){
+                                    $("#labelMagDemandeur").html(magasins[value] );
+                                }
                                 $("#" + index).val(value)
                             }
                         }
@@ -345,6 +360,8 @@ function populate_list(data) {
             non_edit_mode()
 
             $.each(data.data[0], function(index, value) {
+                console.log(value);
+                console.log(index);
 
                 if (value != null) {
 
@@ -365,12 +382,16 @@ function populate_list(data) {
                     if ($("#" + index)) {
 
                         if ($("#" + index).prop("tagName") == "SELECT") {
-                            $("#" + index).append('<option value="' + value + '">' + value + '</option>')
-                            $("#" + index).val(value).trigger("change")
+                            $("#" + index).append('<option value="' + value + '">' + magasins[value]  + '</option>')
+                           // $("#" + index).val(value).trigger("change")
                         } else {
                             if (typeof value.date != 'undefined') {
                                 $("#" + index).val(dateformat(value.date.split(' ')[0]))
                             } else {
+                                if(index == 'transMagdem'){
+                                    $("#labelMagDemandeur").html(magasins[value] );
+                                }
+                               
                                 $("#" + index).val(value)
                             }
                         }
@@ -379,6 +400,7 @@ function populate_list(data) {
                 }
 
             })
+            $("#transMagliv").prop("disabled", "disabled")
 
             $("#transartlineobject").html("");
             $("#transartlineobjectp").html("");
