@@ -23,6 +23,7 @@ class facturation extends controler {
                         ->from('StkProduction', 'a')
                         ->leftJoin('a.prodCodeEtat', 'b')
                         ->where('a.prodCodeEtat > :prodCodeEtat')->setParameter('prodCodeEtat', 75);
+                        
 
        
         if (!empty($params["prodCodeProd"])) {
@@ -37,15 +38,33 @@ class facturation extends controler {
         $devis = $devis->andWhere('a.prodCodeMag= :mag')->setParameter('mag', $params["mag"]);
 
         $deviss = $devis->getQuery()->getScalarResult();
+      
+        foreach ($deviss as  $key => $devis){
+            $stkquery = $em->createQueryBuilder();
 
+            $res = $stkquery->select("c")
+                            ->from('StkFournisseur', 'c')
+                            ->where('c.frsCode = :frsCode')
+                            ->setParameter('frsCode', $devis['a_prodCodeClient'])
+                            ->getQuery()->getScalarResult()[0];
+                            $deviss[$key]['c_frsRaisonsociale'] = $res['c_frsRaisonsociale'];
+                            $deviss[$key]['client'] = $res;
+                            // $this->dd($deviss[$key]);
+
+            
+        }
+        
         $devisarray = array(
             "head" => array(
                 "Code bc" => "a_prodCodeDeviBc",
                 "Exercice" => "a_prodExerciceDevis",
                 "Date de bon de commande" => "a_prodDateBc",
+                "Client " => "c_frsRaisonsociale",
                 "Status" => "b_etatLibelle",
             ),
-            "data" => $deviss
+            "data" => $deviss,
+            //"client" => $client 
+
         );
 
 

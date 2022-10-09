@@ -258,7 +258,41 @@ function inti_dialog_non_edit(param) {
 
 }
 
+
+
+function inti_dialog_print() {
+    $("#nbr_ticket_print").val("");
+    $("#number_ticket").dialog({
+        buttons: {
+            "Annuler": function () {
+                $("#nbr_ticket").val("");
+                $(this).dialog("close");
+                return 5
+            },
+            "Imprimer": function (event, ui) {  
+                $("#nbr_ticket_print").val($("#nbr_ticket").val());
+                $("#nbr_ticket").val("");
+                $(this).dialog("close");
+                return 5
+    
+            },
+            },
+            
+        
+        resizable: true,
+        title: "Impression",
+        modal: true,
+        height: 250,
+        width: 450,
+
+    })
+
+    $("#number_ticket").dialog("open");
+
+}
+
 function inti_dialog(param) {
+    console.log(" inti_dialog ")
 
     $("#dialogs").dialog({
         buttons: {
@@ -273,7 +307,19 @@ function inti_dialog(param) {
                 $(this).dialog("close");
             }, 
             "Imprimer Code bare": function () {
-                if ($(".dataDet").length > 0) {
+                // $("#nbr_ticket").val("");
+                // test = inti_dialog_print();
+                // console.log(test)
+                // console.log($("#nbr_ticket"))
+                 nbrTickets = $("#nbr_ticket_print").val();
+                // console.log(nbrTickets);
+                printTicket = true;
+                if(nbrTickets =="" || nbrTickets <= 0){
+                    printTicket = false;
+                    $.alertMsg("Veuillez saisir le nombre de tickets à imprimer!", "Impression")
+                }
+                if ($(".dataDet").length > 0 && printTicket ) {
+                    
                     $("#printbarecode").html("");
                     var inc = 0
                     var numprod = $("#prodId").val();
@@ -283,7 +329,10 @@ function inti_dialog(param) {
                         var artcode = $(this).find("#proddetailArticleCode").html();
                         var artdesi = $(this).find("#artDesign").html();
 
-                        var fornum = parseInt($(this).find("#journeQte").html());
+                        var fornum = parseInt($("#nbr_ticket_print").val())
+                        console.log('nbr' + fornum)
+                       // parseInt($(this).find("#journeQte").html());
+
                         var deateperom = $(this).find("#journeDatePeromption").find("input").val();
 
 
@@ -297,6 +346,7 @@ function inti_dialog(param) {
                         });
 
                         for (count = 0; count < fornum; count++) {
+                            console.log('inc', inc);
                             var nameide = "bare" + inc++
                             $("#printbarecode").append('<div style="margin-left:10px;font-size:22px;">' + artdesi + '</div>')
                             $("#printbarecode").append('<svg id="' + nameide + '"></svg>')

@@ -106,7 +106,12 @@
                         <tbody id="dataartlineobject">
                         </tbody>
                     </table>
-
+                        
+                        <div class="col-lg-3">
+        <div class="input-group input-group-sm top1">
+            <span class="input-group-addon">Nombre des Tickets à Imprimer :</span> <input type="number" class="form-control" name="nbr_ticket_print" id="nbr_ticket_print" />
+        </div>
+    </div>
                 </div>
             </div>
         </div>
@@ -200,7 +205,15 @@
 
     </div>
 </div>
-
+<div style="visibility: hidden;">
+<div id="number_ticket" title="Nombre des Tickets">
+    <div class="col-lg-9 col-lg-offset-2">
+        <div class="input-group input-group-sm top1">
+            <span class="input-group-addon">Nombre :</span> <input type="text" class="form-control" name="nbr_ticket" id="nbr_ticket" />
+        </div>
+    </div>
+</div>
+</div>
 <div style="display: none;">
     <div id="printbarecode">
       
