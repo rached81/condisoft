@@ -522,9 +522,9 @@ function populate_list(data) {
                     html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                     html += "<td id='artDesign' >" + values.proddetailArticleCode.artDesignation + "</td>";
                     if (values.consProdId.length == 0) {
-                        html += "<td id='journeQte'  contenteditable='true' class='itemart inputdecorator' ></td>";
+                        html += "<td id='journeQte'   onmouseout='updateWeight(this)' contenteditable='true' class='itemart inputdecorator'  ></td>";
                     } else {
-                        html += "<td id='journeQte'  contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
+                        html += "<td id='journeQte'  onmouseout='updateWeight(this)'  contenteditable='true' class='itemart inputdecorator' >" + values.consProdId[0].journeQte + "</td>";
                     }
                     html += "<td id='weight' class='itemart'   > - </td>";
                      html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
@@ -650,9 +650,6 @@ function populate_list(data) {
                 html += "</td>";
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td id='weight' class='itemart'  > - </td>";
-                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
-                  // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 if (values.consProdId.length == 0) {
                     html += "<td id='journeQte' onmouseout='updateWeight(this)' contenteditable='true' class='itemart inputdecorator' ></td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + '<input type="text" datepick>' + "</td>";
@@ -661,6 +658,9 @@ function populate_list(data) {
                     html += "<td id='journeQte' onmouseout='updateWeight(this)'   class='itemart' > " + values.consProdId[0].journeQte + "</td>";
                     html += "<td id='journeDatePeromption' class='itemart' >" + dateformat(values.consProdId[0].journeDate.date.split(" ")[0]) + "</td>";
                 }
+                html += "<td id='weight' class='itemart'  > - </td>";
+                     html += "<td id='artUnit' >" + values.proddetailArticleCode.artUnite + "<input type='hidden' id='weightArtUnite' value=" + values.proddetailArticleCode.artWeight + " /></</td>";
+                  // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
 
                 html += "<td id='qteProduite' class='itemart' >" + values.qteProduite + "</td>";
                 // html += "<td id='weight' class='itemart' >" + values.qteProduite + "</td>";
@@ -1278,14 +1278,18 @@ function updateWeight(elem){
         else{
             journeQte = parseInt($(elem).text());
             unitedWeight = parseFloat($("#"+ tbodyId).find("#weightArtUnite").val())
-            // console.log(" unitedWeight : "+ unitedWeight);
+             console.log(" unitedWeight : "+ unitedWeight);
             // console.log(" journeQte : "+ journeQte);
-            if(!isNaN(journeQte)){
+            if(!isNaN(journeQte) && !isNaN(unitedWeight) ){
 
                 total = unitedWeight*journeQte
                 total = total.toFixed(3);
                 $("#"+ tbodyId).find("#weight").html("" +total)
             }
+            else{
+                $("#"+ tbodyId).find("#weight").html("-" )
+            }
+            
 
         }
 
