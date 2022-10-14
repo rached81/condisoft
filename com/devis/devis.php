@@ -45,10 +45,11 @@ class devis extends controler {
                             ->from('StkFournisseur', 'c')
                             ->where('c.frsCode = :frsCode')
                             ->setParameter('frsCode', $devis['a_prodCodeClient'])
-                            ->getQuery()->getScalarResult()[0];
+                            ->getQuery()->getScalarResult();
+                            
+                            $this->dd($res);
                             $deviss[$key]['c_frsRaisonsociale'] = $res['c_frsRaisonsociale'];
                             $deviss[$key]['client'] = $res;
-                            // $this->dd($deviss[$key]);
 
             
         }
