@@ -397,6 +397,9 @@ body { position:relative;}
 .spacingpring{
     height: 50px;
 }
+.spacingpring-min{
+    height: 25px;
+}
 
 .tabprint tbody tr td , .tabprint thead tr th{
     border: 1px solid #000 !important;

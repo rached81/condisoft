@@ -497,17 +497,18 @@
 
                 <tr>
                     <td colspan="4">
-                        <div style="display: inline-block;float: left;padding-left: 60px;">Résponsable de Gestion</div>
-                        <div style="display: inline-block;float: right;padding-right: 60px;"> Responsable Commerciale </div>
+                        <div style="display: inline-block; float: left; padding-left: 60px;">Résponsable de Gestion</div>
+                        <div style="display: inline-block;float:right;padding-right: 60px;"> Responsable Commerciale </div>
                     </td>
 
                 </tr>
             </tbody>
         </table>
         <div class="footer">
-            Adresse: Avenue Almaghreb Alarabie Hazoua 2223, Tozeur - Tel: 00 216 76 44 01 03
-            Société à responsabilité limitée (SARL) - RC : B0XXXXXXXXX - Matricule fiscal : 159XXXXXX/A/M/000
-            IBAN : TN59 0860 XXXX XXXX XXXX XXXX
+            Siège Sociale: Avenue Almaghreb Alarabie Hazoua 2223, Tunisie - Tel: +216 76 440 103 Fax: +216 76 440 102 
+            Société à responsabilité limitée (SARL)- MF: 792424A - CD: 806979E - RC: B123862002 Tribunal Tunis FLO ID: 3494
+             - ADD en quelité d'entreprise industrielle totalement exportatrice N° DCE-02-065B-1 du 25/04/2022
+             BIC: ATBKTNTT <br/> IBAN : TN59 0103 0072 1100 0097 1891 - Banque: ATB Tozeur
 
         </div>
     </div>
