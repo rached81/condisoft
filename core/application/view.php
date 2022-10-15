@@ -68,7 +68,9 @@ class View {
         "vendors/google-code-prettify/src/prettify",
         "vendors/datatables.net/js/jquery.dataTables.min",
         "custom",
-        "JsBarcode.all",
+        // "JsBarcode.all",
+        "JsBarcode.code128.min",
+        
         "tableExport.min",
         "jspdf.min",
         "jspdf.plugin.autotable",

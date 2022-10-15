@@ -350,7 +350,9 @@ function inti_dialog(param) {
                             var nameide = "bare" + inc++
                             $("#printbarecode").append('<div style="margin-left:10px;font-size:22px;">' + artdesi + '</div>')
                             $("#printbarecode").append('<svg id="' + nameide + '"></svg>')
-                            $("#" + nameide).JsBarcode("MF-" + artcode + "-" + frs + "-" + deateperom + "-" + boncode);
+                            $("#" + nameide).JsBarcode("MF-" + artcode + "-" + frs + "-" + deateperom + "-" + boncode,  {
+                                format: "CODE128"
+                              });
                             $("#printbarecode").append('<br><div class="barecodepaging"></div>')
                         }
 

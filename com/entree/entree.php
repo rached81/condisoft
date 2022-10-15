@@ -99,6 +99,7 @@ class entree extends controler {
 
         $ent = new StkArticle();
         $params = $this->get_passed_vars("data");
+        // $this->dd($params);
 
         Metier_Sgs::get_exercice($params["entExercice"]);
 

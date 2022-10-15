@@ -275,7 +275,7 @@ function populate_list(data) {
 
             $.each(data.data[0], function (index, value) {
 
-
+                    console.log(data.data[0]);
 
                 if (value != null) {
 
@@ -315,6 +315,10 @@ function populate_list(data) {
                             $(".etrbep").show();
                         }
                     }
+                    // if (index == "entNumbl") {
+                    //     $("#entNumbl option[value=" + value + "]").attr('selected', 'selected');
+                        
+                    // }
                 }
 
             })
