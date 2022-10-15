@@ -133,16 +133,56 @@
                             <tr>
                                 <th>Code produit conditioné <br> -</th>
                                 <th>Désignation produit conditioné <br> -</th>
-                                <th>Unité<br> -</th>
                                 <th>Qte produit conditioné <br> -</th>
-
+                                <th>Poids net en Kg<br> -</th>
+                                <!-- <th>Unité<br> -</th> -->
                                 <th> Prix unitaire <br> -</th>
                                 <th> TVA <br> -</th>
                             </tr>
                         </thead>
                         <tbody id="dataartlineobject">
                         </tbody>
+                        
                     </table>
+                    <div class="col-md-4" id="detail-invoice-before" style="display:none">
+                            
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Poids Total Brut en Kg :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Lot :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Récolte :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Origine :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Prix :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Port :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Mode de Paiement :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                </div>
+                            </div>
+
+</div>
 
                 </div>
             </div>
@@ -439,33 +479,41 @@
                             Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
                         </div>
 
-                        <table class="table table-condensed table-bordered tabprint" style="font-size: 12px;">
+                        <table class="table table-condensed table-bordered tabprint" border=1 style="font-size: 12px;">
                             <thead class="head-table">
                                 <tr class="head-table">
                                     <th>Code</th>
                                     <th>Désignation</th>
-                                    <!-- <th>Unité</th> -->
-                                    <th>Qte</th>
-                                    <th>Prix unitaire en &euro;</th>
+                                    <th>Nbr. de pièces</th>
+                                    <th>Poids net en Kg</th>
+                                    <th>Prix unit. en &euro;</th>
                                     <th>TVA</th>
                                     <th>PTTTC en &euro;</th>
                                 </tr>
                             </thead>
-                            <tbody id="dataartlineobjectpf" style="border: 1px solid #000">
+                            <tbody id="dataartlineobjectpf">
+                            </tbody>
+                            <tbody  id="invoice_footer" >
+                            <tr>
+                                    <td class="itemart" colspan="2">Total </td>
+                                    <td class="itemart" colspan="1" id="total-nbr" style="border: 1px solid #000!important"> </td>
+                                    <td class="itemart" colspan="1" id="total-weight" style="border: 1px solid #000!important"> </td>
+                                    <td class="itemart" colspan="2" style="text-align: left;"> &nbsp;</td>
+                                </tr>
                             </tbody>
                             <tbody id="invoice_footer">
                                 <tr>
-                                    <td class="itemart" colspan="6"> </td>
+                                    <td class="itemart" colspan="7"> </td>
 
                                 </tr>
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="2" style="text-align: right;">Total HTVA en &euro; : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="htva"></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="2" style="text-align: right;">TVA en &euro; : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="tva"></td>
                                 </tr>
@@ -478,7 +526,7 @@
                                 </tr> -->
 
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="2" style="text-align: right;">Totale TTC ( &#x20AC;) : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="ttc"></td>
                                 </tr>

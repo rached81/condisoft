@@ -421,6 +421,8 @@ function populate_list(data) {
 
             facturebl_mode();
 
+            $("#detail-invoice-before").show();
+
             $.each(data.data[0], function (index, value) {
 
                 if (value != null) {
@@ -480,14 +482,26 @@ function populate_list(data) {
 
 
             $.each(data.datas, function (indexs, values) {
+                prodQte = parseInt(values.proddetailQteDevis);
+                unitedWeight = parseFloat(values.proddetailArticleCode.artWeight)
+                console.log(" unitedWeight : "+ unitedWeight);
+                console.log(" journeQte : "+ prodQte);
+                if(!isNaN(prodQte) && !isNaN(unitedWeight) ){
 
+                    productWeight = unitedWeight*prodQte
+                    productWeight = productWeight.toFixed(3);
+                    
+                }{
+
+                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                }
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                // html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
+                html += "<td>" + productWeight + "</td>";
 
                 html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";
                 html += "<td id='proddetailTva' class='itemart' >" + values.proddetailTva.tvaCode + "</td>";
@@ -500,15 +514,31 @@ function populate_list(data) {
             var ttva = 0;
             var thtva = 0;
             var ttc = 0;
+            var totalWeight = 0;
+            var totalQteNbr = 0;
             $.each(data.datas, function (indexs, values) {
+
+                prodQteImp = parseInt(values.proddetailQteDevis);
+                unitedWeightImp = parseFloat(values.proddetailArticleCode.artWeight)
+                console.log(" unitedWeight : "+ unitedWeightImp);
+                console.log(" journeQte : "+ prodQteImp);
+                if(!isNaN(prodQteImp) && !isNaN(unitedWeightImp) ){
+
+                    productWeightImp = unitedWeightImp*prodQteImp
+                    productWeightImp = productWeightImp.toFixed(3);
+                    
+                }{
+
+                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                }
 
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                //html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
+                html += "<td>" + productWeightImp + "</td>";
 
                 html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";
                 html += "<td id='proddetailTva' class='itemart' >" + values.proddetailTva.tvaCode + "</td>";
@@ -522,6 +552,9 @@ function populate_list(data) {
 
                 ttc += ptttc;
                 thtva += pt;
+                totalWeight += productWeightImp
+                totalQteNbr += prodQteImp;
+                console.log("totalWeight : ", totalWeight)
                 ttva += (parseFloat(values.proddetailTva.tvaCode) * pt) / 100;
 
                 html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc, _devise ) + "</td>";
@@ -544,6 +577,8 @@ function populate_list(data) {
                 // httes = formatNumber(454.457883333 );
                 // console.log('thtva 4 : ' + httes)
                 // httvv = httes + '';
+            $("#total-weight").html(sgsNumber(totalWeight));
+            $("#total-nbr").html(totalQteNbr);
             $("#htva").html(sgsNumber(thtva, _devise ));
             $("#tva").html(sgsNumber(ttva, _devise ));
             // $("#timbre").html(sgsNumber(0.600));
@@ -644,13 +679,26 @@ function populate_list(data) {
             $("#dataartlineobjectpb").html("");
 
             $.each(data.datas, function (indexs, values) {
+                prodQteImp = parseInt(values.proddetailQteDevis);
+                unitedWeightImp = parseFloat(values.proddetailArticleCode.artWeight)
+                console.log(" unitedWeight : "+ unitedWeightImp);
+                console.log(" journeQte : "+ prodQteImp);
+                if(!isNaN(prodQteImp) && !isNaN(unitedWeightImp) ){
 
+                    productWeightImp = unitedWeightImp*prodQteImp
+                    productWeightImp = productWeightImp.toFixed(3);
+                    
+                }{
+
+                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                }
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
 
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td>" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
+                html += "<td>" + productWeightImp + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
 
                 html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";

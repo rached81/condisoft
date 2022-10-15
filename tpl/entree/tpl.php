@@ -315,7 +315,7 @@
                 /* padding-left: 7px; */
 
             }
-
+         
             table.tabprint tbody>tr>td,
             table.tabprint thead>tr>th {
                 text-align: left;
@@ -350,6 +350,10 @@
                 #dataartlineobjectpf>tr {
                     border: 1px solid #000
                 }
+                .border-table{
+            border: 1px solid  #000!important;
+            border-collapse: collapse!important;
+          }
             }
         </style>
         <table style="width: 100%;font-size: 12px;">
@@ -418,13 +422,14 @@
                 <tr>
                     <!-- <th class="col-md-4 fs14 dark-gris-txt" >Code BE : <span id="entCodep"></span></th> -->
                     <!-- <th  class="col-md-4 fs14">Date reception : <span id="entDatereceptionp"></span></th> -->
-                    <th  class="col-md-4 etrbep fs16">N° de Caisse : <span id="entNumtransitp"></span></th>
+                    <th  class="col-md-4  fs16">N° de Caisse : <span id="entNumtransitp"></span></th>
+                    <th  class="col-md-4  fs16 ">Infestation  : <span id="entDevisep"></span>%</th>
                 </tr>
 
                 <tr>
                     <th  class="col-md-4  fs16 ">Exercice BE : <span id="entExercicep"></span></th>
                     <th  class="col-md-4 fs16 ">Moustiquaire : <span id="entNumblp"></span></th>
-                    <th  class="col-md-4 etrbep fs16 ">Infestation  : <span id="entDevisep"></span>%</th>
+                    
                 </tr>
 
 
@@ -441,45 +446,45 @@
                     <th  class="col-md-4 etrbep  fs16">N° facture : <span id="entNumfacturep"></span></th>
                     <th  class="col-md-4  fs14">Observation : <span id="entObservationp"></span></th>
                 </tr>
-
-
+                
+                
                 <tr>
                     <th  class="col-md-4  fs16">Class : <span id="entContratcodep"></span></th>
                     <th  class="col-md-4 etrbep  fs16">Date Facture : <span id="entDatefacturep"></span></th>
                     <!-- <th  class="col-md-4  fs14">Fournisseur : <span id="entFournisseurcodep"></span></th> -->
                 </tr>
 
-                <tr>
-                    <!-- <th  class="col-md-4">Exercice Contrat : <span id="entContratexercicep"></span></th> -->
-                    <!-- <th  class="col-md-4">Type : <span id="entTypecodep"></span></th> -->
+                <!-- <tr>
+                    <th  class="col-md-4">Exercice Contrat : <span id="entContratexercicep"></span></th>
+                    <th  class="col-md-4">Type : <span id="entTypecodep"></span></th>
 
-                </tr>
+                </tr> -->
 
             </thead>
             <tbody>
 
                 <tr>
-                    <td colspan="4" class="spacingpring"></td>
+                    <td colspan="4" class="spacingpring-min"></td>
                 </tr>
 
                 <tr>
 
                     <td colspan="4" class="contentpring">
 
-                        <table class="table table-condensed table-bordered tabprint" style="font-size: 12px;">
+                        <table class="table table-condensed table-bordered tabprint border-table"  style="font-size: 12px;">
 
-                            <thead>
-                                <tr>
+                            <thead class="border-table">
+                                <tr  class="border-table">
 
-                                    <th>Code</th>
-                                    <th>Désignation</th>
-                                    <th>Tracage article</th>
-                                    <th>Qte</th>
-                                    <th>Qte surplus</th>
-                                    <th>D. Peromption</th>
-                                    <th>P.U</th>
-                                    <th>Tva</th>
-                                    <th>Prix totale HT</th>
+                                    <th class="border-table">Code</th>
+                                    <th class="border-table">Désignation</th>
+                                    <th class="border-table">Tracage article</th>
+                                    <th class="border-table">Qte</th>
+                                    <th class="border-table">Qte surplus</th>
+                                    <th class="border-table">D. Peromption</th>
+                                    <th class="border-table">P.U</th>
+                                    <th class="border-table">Tva</th>
+                                    <th class="border-table">Prix totale HT</th>
 
                                 </tr>
                             </thead>
