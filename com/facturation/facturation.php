@@ -50,10 +50,7 @@ class facturation extends controler {
                             $deviss[$key]['c_frsRaisonsociale'] = $res['c_frsRaisonsociale'];
                             $deviss[$key]['client'] = $res;
                             // $this->dd($deviss[$key]);
-
-            
-        }
-        
+            }
         $devisarray = array(
             "head" => array(
                 "Code bc" => "a_prodCodeDeviBc",

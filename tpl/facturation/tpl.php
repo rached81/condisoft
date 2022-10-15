@@ -144,43 +144,66 @@
                         </tbody>
                         
                     </table>
-                    <div class="col-md-4" id="detail-invoice-before" style="display:none">
-                            
+                    <div class="col-md-6" id="detail-invoice-before" style="display:none">
+
+                    
+                    <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Note Optionnel sur la Facture :</span> 
+                                    <textarea id="notbefore-edit"  class="form-control"  rows="4" cols="70"></textarea>
+                                </div>
+                            </div>
+                    
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Poids Total Brut en Kg :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Poids Total Brut en Kg :</span> 
+                                    <input type="text" class="form-control" name="totalGrossWeight" id="totalGrossWeight" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Lot :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Lot :</span> 
+                                    <input type="text" class="form-control" name="lot" id="lot" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Récolte :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Récolte :</span> <input type="text" class="form-control" name="harvestYear" id="harvestYear" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Origine :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Origine :</span>
+                                     <input type="text" class="form-control" name="origin" id="origin" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Prix :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Prix :</span> 
+                                    <input type="text" class="form-control" name="price" id="price" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Port :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Port :</span> 
+                                    <input type="text" class="form-control" name="port" id="port" />
                                 </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Mode de Paiement :</span> <input type="text" class="form-control" name="PRFnom" id="PRFnom" />
+                                    <span class="input-group-addon">Mode de Paiement :</span> 
+                                    <input type="text" class="form-control" name="paymentMethod" id="paymentMethod" />
                                 </div>
                             </div>
+                            <!--
+                                totalGrossWeight
+                                lot
+                                harvestYear
+                                origin
+                                price
+                                port
+                                paymentMethod
+                            -->
 
 </div>
 
@@ -228,6 +251,10 @@
 
             .fwn {
                 font-weight: normal !important;
+            }
+            .fwb {
+                font-weight: bold !important;
+                display:block;
             }
 
 
@@ -401,29 +428,10 @@
                     </th>
 
                 </tr>
-                <!-- <tr>
-                  
-                    <th colspan="4" class="gris"style="padding-right:20px!important;width:30%;text-align:right; font-weight: bolder;font-size: 16px;color:#9a9a9a!important;">
-                        <div class="dark-gris" style="font-size: 22px!important;font-family: Arial!important;padding-bottom:5px">
-                            FACTURE
-                        </div>
-                        <div  class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
-                            N° :  <span id="prodCodeFacturepf"></span>
-                        </div>
-                        <div  class="dark-gris-txt fs14 fwn" style="margin-top: 3px;">
-                            04 Avril 2022 
-                            DATE: 
-                            <?php
-                            $date = new Zend_Date();
-                            echo $date->toString("dd-MM-yyyy");
-                            ?>
-                        </div>
 
-                    </th>
-                </tr> -->
 
                 <tr>
-                    <td colspan="4" class="spacingpring"></td>
+                    <td colspan="4" class="spacingpring-min"></td>
 
                 </tr>
 
@@ -470,7 +478,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="4" class="spacingpring"></td>
+                    <td colspan="4" class="spacingpring-min"></td>
 
                 </tr>
                 <tr>
@@ -484,7 +492,7 @@
                                 <tr class="head-table">
                                     <th>Code</th>
                                     <th>Désignation</th>
-                                    <th>Nbr. de pièces</th>
+                                    <th>Nbr..    de pièces</th>
                                     <th>Poids net en Kg</th>
                                     <th>Prix unit. en &euro;</th>
                                     <th>TVA</th>
@@ -534,6 +542,7 @@
                             </tbody>
                         </table>
                         <div id="noteafter">
+                            
                             Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
                         </div>
 

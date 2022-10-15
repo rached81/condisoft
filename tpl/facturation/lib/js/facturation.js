@@ -101,7 +101,7 @@ function reset_form() {
     $("#addform").find("input").each(function () {
         $(this).val("")
     })
-
+    $("#detail-invoice-before").hide();
     $("#addform").find("select").each(function () {
         $(this).val("").trigger("change")
     })
@@ -116,6 +116,7 @@ function inti_dialog_non_editb(param) {
                 $(this).dialog("close");
             },
             "Imprimer": function () {
+                
                 $("#printareab").printThis({
                     importCSS: true,
                     pageTitle: "Facture",
@@ -146,6 +147,20 @@ function inti_dialog_non_editf(param) {
                 $(this).dialog("close");
             },
             "Imprimer": function () {
+                not = "<divid='' class='fwb' >Poids Total Brut en Kg : " + $("#totalGrossWeight").val() + "</div>";
+                not += "<divid='' class='fwb' >Lot : " + $("#lot").val() + "</div>";
+                // not += "<divid='' class='fwb' > Lot : " + $("#harvestYear").val() + "</div>";
+                not += "<divid='' class='fwb' >Récolte : " + $("#harvestYear").val() + "</div>";
+                not += "<divid='' class='fwb' >Origine : " + $("#origin").val() + "</div>";
+                not += "<divid='' class='fwb' >Prix : " + $("#price").val() + "</div>";
+                not += "<divid='' class='fwb' >Port : " + $("#port").val() + "</div>";
+                not += "<divid='' class='fwb' >Mode de Paiement : " + $("#paymentMethod").val() + "</div>";
+                // console.log(not)
+                $("#noteafter").html(not)
+                notebefore = $.trim($("#notbefore-edit").val())
+                if(notebefore !="")
+                $("#notebefore").html(notebefore)
+                
                 $("#printareaf").printThis({
                     importCSS: true,
                     pageTitle: "Production",
@@ -476,7 +491,6 @@ function populate_list(data) {
 
             $("#dataartlineobjectpf").html("");
 
-
             $("#dataartlineobjectpb").html("");
 
 
@@ -493,7 +507,7 @@ function populate_list(data) {
                     
                 }{
 
-                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                    //$.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
                 }
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
@@ -529,7 +543,7 @@ function populate_list(data) {
                     
                 }{
 
-                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                   // $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
                 }
 
 
@@ -565,6 +579,14 @@ function populate_list(data) {
                 
 
             })
+            
+                                
+                                
+                                
+                                
+                                
+                                
+           
 
 
                 // httes = formatNumber('454' );
@@ -690,7 +712,7 @@ function populate_list(data) {
                     
                 }{
 
-                    $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
+                    //$.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
                 }
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
