@@ -54,6 +54,7 @@ class facturation extends controler {
             }
         $devisarray = array(
             "head" => array(
+                "Code Facture" => "a_prodCodeFacture",
                 "Code bc" => "a_prodCodeDeviBc",
                 "Exercice" => "a_prodExerciceDevis",
                 "Date de bon de commande" => "a_prodDateBc",

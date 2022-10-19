@@ -35,13 +35,14 @@ class entree extends controler {
 
         $ent = $ent->andWhere('a.entExercice= :exe')->setParameter('exe', $params["exe"]);
         $ent = $ent->andWhere('a.entMagrecepcode= :mag')->setParameter('mag', $params["mag"]);
-
+        $ent = $ent->orderBy('a.entDatereception', 'DESC');
         $entrs = $ent->getQuery()->getScalarResult();
 
         $entarray = array(
             "head" => array(
                 "Code entre" => "a_entCode",
                 "Exercice" => "a_entExercice",
+                "N° de Parcelle" => "a_entBcolexercice",
                 "Date de reception" => "a_entDatereception",
             ),
             "data" => $entrs
