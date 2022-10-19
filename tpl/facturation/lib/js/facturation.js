@@ -147,19 +147,23 @@ function inti_dialog_non_editf(param) {
                 $(this).dialog("close");
             },
             "Imprimer": function () {
-                not = "<divid='' class='fwb' >Poids Total Brut en Kg : " + $("#totalGrossWeight").val() + "</div>";
-                not += "<divid='' class='fwb' >Lot : " + $("#lot").val() + "</div>";
+                not = "<div id='' class='fwb' >Poids Total Brut en Kg : " + $("#totalGrossWeight").val() + "</div>";
+                not += "<div id='' class='fwb' >Lot : " + $("#lot").val() + "</div>";
                 // not += "<divid='' class='fwb' > Lot : " + $("#harvestYear").val() + "</div>";
-                not += "<divid='' class='fwb' >Récolte : " + $("#harvestYear").val() + "</div>";
-                not += "<divid='' class='fwb' >Origine : " + $("#origin").val() + "</div>";
-                not += "<divid='' class='fwb' >Prix : " + $("#price").val() + "</div>";
-                not += "<divid='' class='fwb' >Port : " + $("#port").val() + "</div>";
-                not += "<divid='' class='fwb' >Mode de Paiement : " + $("#paymentMethod").val() + "</div>";
+                not += "<div id='' class='fwb' >Récolte : " + $("#harvestYear").val() + "</div>";
+                not += "<div id='' class='fwb' >Origine : " + $("#origin").val() + "</div>";
+                not += "<div id='' class='fwb' >Prix : " + $("#price").val() + "</div>";
+                not += "<div id='' class='fwb' >Port : " + $("#port").val() + "</div>";
+                not += "<div id='' class='fwb' >Mode de Paiement : " + $("#paymentMethod").val() + "</div>";
                 // console.log(not)
                 $("#noteafter").html(not)
                 notebefore = $.trim($("#notbefore-edit").val())
                 if(notebefore !="")
                 $("#notebefore").html(notebefore)
+
+                note = $.trim($("#not-edit").val())
+                if(note !="")
+                $("#noteafter-opt").html(note)
                 
                 $("#printareaf").printThis({
                     importCSS: true,
@@ -503,7 +507,7 @@ function populate_list(data) {
                 if(!isNaN(prodQte) && !isNaN(unitedWeight) ){
 
                     productWeight = unitedWeight*prodQte
-                    productWeight = productWeight.toFixed(3);
+                    //productWeight = productWeight.toFixed(3);
                     
                 }{
 
@@ -517,7 +521,7 @@ function populate_list(data) {
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
                 html += "<td>" + productWeight + "</td>";
 
-                html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + values.proddetailPrixUniaireDevise + "</td>";
+                html += "<td id='proddetailPrixUniaireDevise' class='itemart' >" + sgsNumber(values.proddetailPrixUniaireDevise, _devise )  + "</td>";
                 html += "<td id='proddetailTva' class='itemart' >" + values.proddetailTva.tvaCode + "</td>";
                 html += "</tr>";
 
@@ -539,7 +543,7 @@ function populate_list(data) {
                 if(!isNaN(prodQteImp) && !isNaN(unitedWeightImp) ){
 
                     productWeightImp = unitedWeightImp*prodQteImp
-                    productWeightImp = productWeightImp.toFixed(3);
+                    // productWeightImp = productWeightImp;
                     
                 }{
 
@@ -566,7 +570,7 @@ function populate_list(data) {
 
                 ttc += ptttc;
                 thtva += pt;
-                totalWeight += productWeightImp
+                totalWeight += parseFloat(productWeightImp)
                 totalQteNbr += prodQteImp;
                 console.log("totalWeight : ", totalWeight)
                 ttva += (parseFloat(values.proddetailTva.tvaCode) * pt) / 100;

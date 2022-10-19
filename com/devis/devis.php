@@ -35,6 +35,7 @@ class devis extends controler {
 
         $devis = $devis->andWhere('a.prodExerciceDevis= :exe')->setParameter('exe', $params["exe"]);
         $devis = $devis->andWhere('a.prodCodeMag= :mag')->setParameter('mag', $params["mag"]);
+        $devis = $devis->orderBy('a.prodDateDevis', 'DESC');
 
         $deviss = $devis->getQuery()->getScalarResult();
         

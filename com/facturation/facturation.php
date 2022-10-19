@@ -36,6 +36,7 @@ class facturation extends controler {
 
         $devis = $devis->andWhere('a.prodExerciceDevis= :exe')->setParameter('exe', $params["exe"]);
         $devis = $devis->andWhere('a.prodCodeMag= :mag')->setParameter('mag', $params["mag"]);
+        $devis = $devis->orderBy('a.prodDateFacture', 'DESC');
 
         $deviss = $devis->getQuery()->getScalarResult();
       

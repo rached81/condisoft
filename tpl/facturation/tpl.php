@@ -147,10 +147,17 @@
                     <div class="col-md-6" id="detail-invoice-before" style="display:none">
 
                     
-                    <div class="col-lg-9">
+                            <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
                                     <span class="input-group-addon">Note Optionnel sur la Facture :</span> 
                                     <textarea id="notbefore-edit"  class="form-control"  rows="4" cols="70"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-9">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Note Optionnel sous la Facture :</span> 
+                                    <textarea id="not-edit"  class="form-control"  rows="4" cols="70"></textarea>
                                 </div>
                             </div>
                     
@@ -483,9 +490,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" class="contentpring">
-                        <div id="notebefore">
-                            Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
-                        </div>
+                        <div id="notebefore"></div>
 
                         <table class="table table-condensed table-bordered tabprint" border=1 style="font-size: 12px;">
                             <thead class="head-table">
@@ -506,7 +511,7 @@
                                     <td class="itemart" colspan="2">Total </td>
                                     <td class="itemart" colspan="1" id="total-nbr" style="border: 1px solid #000!important"> </td>
                                     <td class="itemart" colspan="1" id="total-weight" style="border: 1px solid #000!important"> </td>
-                                    <td class="itemart" colspan="2" style="text-align: left;"> &nbsp;</td>
+                                    <td class="itemart" colspan="3" style="text-align: left;"> &nbsp;</td>
                                 </tr>
                             </tbody>
                             <tbody id="invoice_footer">
@@ -541,9 +546,12 @@
 
                             </tbody>
                         </table>
+                        <div id="notebefore">
+
+                        </div>
+                        <div id="noteafter-opt"> </div>      
                         <div id="noteafter">
                             
-                            Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à
                         </div>
 
                     </td>
@@ -551,14 +559,14 @@
                 <tr>
                     <td colspan="4" class="spacingpring"></td>
                 </tr>
-
+<!-- 
                 <tr>
                     <td colspan="4">
                         <div style="display: inline-block; float: left; padding-left: 60px;">Résponsable de Gestion</div>
                         <div style="display: inline-block;float:right;padding-right: 60px;"> Responsable Commerciale </div>
                     </td>
 
-                </tr>
+                </tr> -->
             </tbody>
         </table>
         <div class="footer">
@@ -666,13 +674,13 @@
                     <td colspan="4" class="spacingpring"></td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <td colspan="4">
                         <div style="display: inline-block;float: left;padding-left: 60px;">Résponsable de Gestion</div>
                         <div style="display: inline-block;float: right;padding-right: 60px;"> Responsable Commerciale </div>
                     </td>
 
-                </tr>
+                </tr> -->
             </tbody>
         </table>
 
