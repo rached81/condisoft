@@ -1,6 +1,110 @@
+var _devise  = "";
 $(document).ready(function () {
-
+    dispalyDevise();
     actualise_stock();
+    $("#netWeight").focusout(function(){
+        console.log($("#proddetailArticleCodea").val());
+        if($("#proddetailArticleCodea").val() != "" ){
+            var param = {};
+            param.artCode = $("#proddetailArticleCodea").val();    
+
+            get_ajax_data("/article/asyn_get_article", param, function (data){
+
+                let totalWeight = $("#netWeight").val();
+                
+                if(weightArticle != "" && weightArticle != 0){
+                    weightArticle = data.data.data[0].g_artWeight;
+                    nbrArticle = parseFloat(totalWeight)/parseFloat(weightArticle);
+                    $("#proddetailQteDevisa").val(nbrArticle);            
+                } else {
+                    $.alertMsg("Veuillez Definir le poid de l'article")
+                }
+        
+            })
+                
+
+        }
+       
+
+        })
+
+        $("#proddetailQteDevisa").focusout(function(){
+            console.log($("#proddetailArticleCodea").val());
+            if($("#proddetailArticleCodea").val() != "" ){
+                var param = {};
+                param.artCode = $("#proddetailArticleCodea").val();    
+    
+                get_ajax_data("/article/asyn_get_article", param, function (data){
+    
+                    let nbrArticle = $("#proddetailQteDevisa").val();
+                    
+                    weightArticle = data.data.data[0].g_artWeight;
+                    if(weightArticle != "" && weightArticle != 0){
+                        totalWeight = parseFloat(weightArticle)*parseFloat(nbrArticle);
+                        $("#netWeight").val(totalWeight.toFixed(3));            
+                    } else {
+                        $.alertMsg("Veuillez Definir le poid de l'article")
+                    }
+            
+                })
+                    
+    
+            }
+           
+    
+            })
+
+            $("#priceOneUnit").focusout(function(){
+                if($("#proddetailArticleCodea").val() != "" ){
+                    var param = {};
+                    param.artCode = $("#proddetailArticleCodea").val();    
+        
+                    get_ajax_data("/article/asyn_get_article", param, function (data){
+        
+                        let priceOneUnit = $("#priceOneUnit").val();
+                        
+                        weightArticle = data.data.data[0].g_artWeight;
+                        if(weightArticle != "" && weightArticle != 0){
+                            console.log("test");
+                            priceArticle = parseFloat(weightArticle)*parseFloat(priceOneUnit);
+                            $("#proddetailPrixUniaireDeviseDevisa").val(priceArticle.toFixed(2));            
+                        } else {
+                            $.alertMsg("Veuillez Definir le poid de l'article")
+                        }
+                
+                    })
+                        
+        
+                }
+               
+        
+                })
+                $("#proddetailPrixUniaireDeviseDevisa").focusout(function(){
+                    if($("#proddetailArticleCodea").val() != "" ){
+                        var param = {};
+                        param.artCode = $("#proddetailArticleCodea").val();    
+            
+                        get_ajax_data("/article/asyn_get_article", param, function (data){
+            
+                            let priceArticle = $("#proddetailPrixUniaireDeviseDevisa").val();
+                            
+                            weightArticle = data.data.data[0].g_artWeight;
+                            if(weightArticle != "" && weightArticle != 0){
+                                priceOneUnit =parseFloat(priceArticle)/parseFloat(weightArticle);
+                                $("#priceOneUnit").val(priceOneUnit.toFixed(2));            
+                            } else {
+                                $.alertMsg("Veuillez Definir le poid de l'article")
+                            }
+                    
+                        })
+                            
+            
+                    }
+                   
+            
+                    })
+
+       
 
     window.arttrace = "";
     window.lottrace = "";
@@ -217,20 +321,26 @@ function populate_list(data) {
             $("#dataartlineobject").html("");
             $("#dataartlineobjectp").html("");
             $.each(data.datas, function (indexs, values) {
-
-
+                weightArticle = values.proddetailArticleCode.artWeight;
+                nbrArticle = values.proddetailQteDevis;
+                weightTotal = parseFloat(weightArticle)*parseFloat(nbrArticle)
+                weightTotal = sgsNumber(weightTotal, _devise);
+                priceOneUnite = parseFloat(values.proddetailPrixUniaireDeviseDevis)/parseFloat(weightArticle);
+                priceOneUnite = sgsNumber(priceOneUnite, _devise)
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
                 html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td >" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
+                // html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td >" + weightTotal + "</td>";
                 html += "<td id='proddetailQteDevis' contenteditable='true' class='itemart inputdecorator' >" + values.proddetailQteDevis + "</td>";
+                html += "<td >" + priceOneUnite + "</td>";
                 html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart ' >" + values.proddetailPrixUniaireDeviseDevis + "</td>";
                 html += "<td id='proddetailTva' class='itemart' >" + values.proddetailTvaDevis.tvaDesignation + "</td>";
 
 
                 var pt = parseFloat(values.proddetailPrixUniaireDeviseDevis) * parseFloat(values.proddetailQteDevis);
                 var ptttc = pt + ((parseFloat(values.proddetailTvaDevis.tvaCode) * pt) / 100);
-                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc) + "</td>";
+                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc, _devise) + "</td>";
                 html += "</tr>";
 
                 $("#dataartlineobject").append(html);
@@ -252,6 +362,30 @@ function populate_list(data) {
     consult.titre = "Consultation"
     consult.attr = ["a_prodCodeDeviBc"]
     consult.class = "consultbtn"
+    // consult.visible = function (param) {
+    //     alert = false;
+    //     get_ajax_data("/devis/asyn_get_data_object", param, function (data) {
+
+    //         $.each(data.datas, function (indexs, values) {
+    //             if(values.proddetailArticleCode.artWeight == 0)
+    //             {
+    //                 alert = true
+                    
+    //             }else{
+    //                 alert = false
+    //             }
+                
+    //         })
+
+    //     })
+    //     if(alert)
+    //     {
+    //         $.alertMsg("Le poids d'article ne peut pas être egale à zéro !", "ALERT ! ");
+    //         return false;
+    //     }else{
+    //         return true
+    //     }
+    // }
     consult.fnct = function (param) {
         get_ajax_data("/devis/asyn_get_data_object", param, function (data) {
             reset_form();
@@ -261,6 +395,7 @@ function populate_list(data) {
             $.each(data.data[0], function (index, value) {
 
                 if (value != null) {
+                
 
 
                     if ($("#" + index + "p")) {
@@ -291,27 +426,39 @@ function populate_list(data) {
             })
             
              var selectmap = $("#prodCodeClient").select2('data')[0].text;
-             
-          
-             $("#prodClientp").html(selectmap);
-            $("#prodDevise").val(data.data[0].prodDevise.deviseCode).trigger("change");
-            $("#prodCommerciale").val(data.data[0].prodCommerciale.idutil).trigger("change");
-            $("#prodDevisep").html(data.data[0].prodDevise.deviseLibelle);
-            $("#prodCommercialep").html(data.data[0].prodCommerciale.utinom);
-            $("#dataartlineobject").html("");
-            $("#dataartlineobjectp").html("");
-
-            var ttva = 0;
-            var thtva = 0;
-            var ttc = 0;
+                console.log("devise : "  , data.data[0].prodDevise)
+                _devise = data.data[0].prodDevise.deviseLibelle;
+                $("#prodClientp").html(selectmap);
+                $("#prodDevise").val(data.data[0].prodDevise.deviseCode).trigger("change");
+                $("#prodCommerciale").val(data.data[0].prodCommerciale.idutil).trigger("change");
+                $("#prodDevisep").html(data.data[0].prodDevise.deviseLibelle);
+                $("#prodCommercialep").html(data.data[0].prodCommerciale.utinom);
+                $("#dataartlineobject").html("");
+                $("#dataartlineobjectp").html("");
+                var ttva = 0;
+                var thtva = 0;
+                var ttc = 0;
             $.each(data.datas, function (indexs, values) {
+                
+                // if(values.proddetailArticleCode.artWeight == 0)
+                // {
+                //     alert("Le poids d'article ne peut pas être egale à zéro !")
 
-
+                //     return false;
+                // }
+                weightArticle = values.proddetailArticleCode.artWeight;
+                nbrArticle = values.proddetailQteDevis;
+                weightTotal = parseFloat(weightArticle)*parseFloat(nbrArticle);
+                weightTotal = sgsNumber(weightTotal, _devise);
+                console.log('w : ' + weightArticle + "  Qte : " + nbrArticle);
+                priceOneUnite = parseFloat(values.proddetailPrixUniaireDeviseDevis)/parseFloat(weightArticle);
+                priceOneUnite = sgsNumber(priceOneUnite, _devise)
                 var html = "<tr class='dataDet'>";
                 html += "<td id='proddetailArticleCode' class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td >" + values.proddetailArticleCode.artDesignation + "</td>";
-                html += "<td >" + values.proddetailArticleCode.artUnite + "</td>";
+                html += "<td >" + weightTotal + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart'>" + values.proddetailQteDevis + "</td>";
+                html += "<td id='priceOneUnite' class='itemart'>" + priceOneUnite + "</td>";
                 html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart'>" + values.proddetailPrixUniaireDeviseDevis + "</td>";
                 html += "<td id='proddetailTva' class='itemart'>" + values.proddetailTvaDevis.tvaDesignation + "</td>";
 
@@ -321,19 +468,20 @@ function populate_list(data) {
                 thtva += pt;
                 ttva += (parseFloat(values.proddetailTvaDevis.tvaCode) * pt) / 100;
 
-                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc) + "</td>";
+                html += "<td id='proddetailPtttc' class='itemart' >" + sgsNumber(ptttc, _devise) + "</td>";
                 html += "</tr>";
-
+                console.log("_devise : ", _devise)
+                dispalyDevise();
                 $("#dataartlineobject").append(html);
                 $("#dataartlineobjectp").append(html);
             })
 
 
 
-            $("#htva").html(sgsNumber(thtva));
-            $("#tva").html(sgsNumber(ttva));
-            $("#timbre").html(0.600);
-            $("#ttc").html(sgsNumber(ttc + 0.600));
+            $("#htva").html(sgsNumber(thtva, _devise));
+            $("#tva").html(sgsNumber(ttva, _devise ));
+            // $("#timbre").html(0.600);
+            $("#ttc").html(sgsNumber(ttc, _devise));
 
             $("#addform").attr("action", "");
             $(".addartform").hide();
@@ -347,6 +495,7 @@ function populate_list(data) {
     annul.attr = ["a_prodCodeDeviBc"]
     annul.class = "supptbtn"
     annul.dr = "annulationdemapro"
+
     annul.fnct = function (param) {
 
         $.confirm("Voulez vous vraiment annulé se bon d'approvionnement", function () {
@@ -371,7 +520,19 @@ function devis_mode() {
         $(this).show();
     })
 }
+function dispalyDevise(selectorTag = '_devise'){
+    // console.log("je suis dans dispalyDevise")
+    // console.log("_devise dans la function : ", _devise)
+    // console.log($("." + selectorTag).length)
+    $("." + selectorTag).each(function () {
+        // console.log("$(this).html() ", $(this).html())
+        // if($(this).html() == ""){
+            $(this).html(" en " + _devise + " ")
+        // }
 
+    })
+
+}
 
 function bc_mode() {
     $("[forminput]").each(function () {
@@ -381,6 +542,7 @@ function bc_mode() {
         $(this).show();
     })
 }
+
 function ajout_article_data() {
     var execp = false;
     $("#dataartlineobject").find(".dataDet").each(function () {
@@ -393,24 +555,30 @@ function ajout_article_data() {
     var param = {};
     
     param.artCode = $("#proddetailArticleCodea").val();
+    
+    
 
     get_ajax_data("/article/asyn_get_article", param, function (data) {
-
+        console.log(data);
         if (!execp) {
+
+            
             var selectmap = $("#proddetailArticleCodea").select2('data');
             var selectmaptva = $("#proddetailTvaDevisa").select2('data');
-
+            console.log(selectmap)
             var html = "<tr class='dataDet'>";
             html += "<td id='proddetailArticleCode' class='itemart'>" + $("#proddetailArticleCodea").val() + "</td>";
             html += "<td >" + selectmap[0].text + "</td>";
             
-             html += "<td >" +data.data.data[0].g_artUnite+ "</td>";
+            //  html += "<td >" +data.data.data[0].g_artUnite+ "</td>";
+             html += "<td >" +   $("#netWeight").val() + "</td>";
             html += "<td id='proddetailQteDevis' class='itemart'>" + $("#proddetailQteDevisa").val() + "</td>";
+            html += "<td id='priceOneUnit' class='itemart'>" + $("#priceOneUnit").val() + "</td>";
             html += "<td id='proddetailPrixUniaireDeviseDevis' class='itemart'>" + $("#proddetailPrixUniaireDeviseDevisa").val() + "</td>";
             html += "<td id='proddetailTvaDevis' class='itemart'>" + selectmaptva[0].id + "</td>";
             var ptt = parseFloat($("#proddetailQteDevisa").val() * $("#proddetailPrixUniaireDeviseDevisa").val());
             var pttc = ptt + parseFloat((ptt * parseFloat(selectmaptva[0].id)) / 100)
-            html += "<td id='proddetailTtc'  >" + pttc + "</td>";
+            html += "<td id='proddetailTtc'  >" + sgsNumber(pttc, _devise) + "</td>";
             html += '<td><button  class="btn btn-danger btn-xs delart"><span class="glyphicon glyphicon-remove-circle"></span></button></td>';
             html += "</tr>";
 

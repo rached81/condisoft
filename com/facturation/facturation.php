@@ -62,7 +62,6 @@ class facturation extends controler {
                 "Status" => "b_etatLibelle",
             ),
             "data" => $deviss,
-            //"client" => $client 
 
         );
 

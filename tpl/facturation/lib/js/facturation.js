@@ -502,8 +502,8 @@ function populate_list(data) {
             $.each(data.datas, function (indexs, values) {
                 prodQte = parseInt(values.proddetailQteDevis);
                 unitedWeight = parseFloat(values.proddetailArticleCode.artWeight)
-                console.log(" unitedWeight : "+ unitedWeight);
-                console.log(" journeQte : "+ prodQte);
+                // console.log(" unitedWeight : "+ unitedWeight);
+                // console.log(" journeQte : "+ prodQte);
                 if(!isNaN(prodQte) && !isNaN(unitedWeight) ){
 
                     productWeight = unitedWeight*prodQte

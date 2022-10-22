@@ -67,7 +67,9 @@
 
 
                                     <td>Article</td>
-                                    <td>Qte</td>
+                                    <td>Poids Net en Kg</td>
+                                    <td>Nbre des Pièces</td>
+                                    <td>Prix de Kg</td>
                                     <td>PU Devise</td>
                                     <td>Tva</td>
                                     <td>
@@ -81,13 +83,20 @@
                                 <tr class="addartform">
 
                                     <td class="col-md-3">
-                                        <select required="" dep="art_class:art_class" selectsearch="stk_article:art_code:art_designation:art_code;art_designation" required="" editmode class="form-control" id="proddetailArticleCodea" name="proddetailArticleCodea" placeholder=""></select>
+                                        <select required="" dep="art_class:art_class" selectsearch="stk_article:art_code:art_designation:art_code;art_designation;art_code:art_weight" required="" editmode class="form-control" id="proddetailArticleCodea" name="proddetailArticleCodea" placeholder=""></select>
+                                    </td>
+
+                                    <td class="col-md-2">
+                                        <input required="" editmode type="text" class="form-control" id="netWeight" name="netWeight" placeholder="">
                                     </td>
 
                                     <td class="col-md-2">
                                         <input required="" editmode type="text" class="form-control" id="proddetailQteDevisa" name="proddetailQteDevisa" placeholder="">
+                                        <input type="hidden" id="weightArticle" value="" />
                                     </td>
-
+                                    <td class="col-md-2">
+                                        <input required="" editmode type="text" class="form-control" id="priceOneUnit" name="priceOneUnit" placeholder="">
+                                    </td>
                                     <td class="col-md-2">
                                         <input required="" editmode type="text" class="form-control" id="proddetailPrixUniaireDeviseDevisa" name="proddetailPrixUniaireDeviseDevisa" placeholder="">
                                     </td>
@@ -96,9 +105,9 @@
                                         <select required="" selecmodel="stk_tva:tva_pourcentage:tva_designation" required="" editmode class="form-control" id="proddetailTvaDevisa" name="proddetailTvaDevisa" placeholder=""></select>
                                     </td>
 
-                                    <td class="col-md-3">
-                                        <!--<select  selectsearch="stk_Entre_Detail:ent_codeTrace:ent_codeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproLottracecode" name="demaproLottracecode" placeholder=""></select>-->
-                                    </td>
+                                    <!-- <td class="col-md-1">
+                                        <select  selectsearch="stk_Entre_Detail:ent_codeTrace:ent_codeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproLottracecode" name="demaproLottracecode" placeholder=""></select>
+                                    </td> -->
 
                                     <td class="col-md-3">
                                         <!--<select  selectsearch="stk_Entre_Detail:ent_lotCodeTrace:ent_lotCodeTrace:ent_codeTrace"  editmode  class="form-control col-md-1" id="demaproTracecode" name="demaproTracecode" placeholder=""></select>-->
@@ -121,11 +130,13 @@
                             <tr>
                                 <th>Code</th>
                                 <th>Désignation</th>
-                                <th>Unité</th>
-                                <th>Qte</th>
+                                <!-- <th>Unité</th> -->
+                                <th>Poids Net en Kg</th>
+                                <th>Nbre des Pièces</th>
+                                <th>Prix de Kg</th>
                                 <th>PU Devise</th>
                                 <th>TVA</th>
-                                <th>PTTC</th>
+                                <th>PTTC <span class="_devise" ></span></th>
                             </tr>
                         </thead>
                         <tbody id="dataartlineobject">
@@ -230,6 +241,10 @@
                 padding-bottom: 10px!important;
                 padding-top: 7px!important;
                 border: 1px solid #000
+            }
+
+            .head-span {
+                color: #fff !important;
             }
 
             .fs14 {
@@ -410,11 +425,12 @@
                                 <tr class="head-table">
                                     <th>Code</th>
                                     <th>Désignation</th>
-                                    <th>Unité</th>
+                                    <th>Poids Net </th>
                                     <th>Qte</th>
-                                    <th>Prix unitaire</th>
+                                    <th>Prix Kg</th>
+                                    <th>Prix Art.</th>
                                     <th>TVA</th>
-                                    <th>PTTC</th>
+                                    <th>PTTC <span class="head-span _devise" ></span></th>
                                 </tr>
                             </thead>
                             <tbody id="dataartlineobjectp">
@@ -422,24 +438,24 @@
 
                             <tbody id="invoice_footer">
                                 <tr>
-                                    <td class="itemart" colspan="7"> </td>
+                                    <td class="itemart" colspan="8"> </td>
 
                                 </tr>
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="3" style="text-align: right;">Total HTVA en &euro; : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="htva"></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="3" style="text-align: right;">TVA en &euro; : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="tva"></td>
                                 </tr>
 
 
                                 <tr>
-                                    <td class="itemart" colspan="3">&nbsp; </td>
+                                    <td class="itemart" colspan="4">&nbsp; </td>
                                     <td class="itemart" colspan="3" style="text-align: right;">Totale TTC ( &#x20AC;) : </td>
                                     <td class="itemart" colspan="1" style="text-align: left;" id="ttc"></td>
                                 </tr>
@@ -456,7 +472,7 @@
 
                 <tr>
                     <td colspan="4">
-                        <div style="display: inline-block;float: left;padding-left: 60px;">Résponsable de Gestion</div>
+                        <div style="display: inline-block;float: left;padding-left: 60px;">&nbsp;</div>
                         <div style="display: inline-block;float: right;padding-right: 60px;"> Responsable Commerciale </div>
                     </td>
 
