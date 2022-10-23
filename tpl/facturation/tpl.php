@@ -149,14 +149,14 @@
                     
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Note Optionnel sur la Facture :</span> 
+                                    <span class="input-group-addon">Note Optionnelle sur la Facture :</span> 
                                     <textarea id="notbefore-edit"  class="form-control"  rows="4" cols="70"></textarea>
                                 </div>
                             </div>
 
                             <div class="col-lg-9">
                                 <div class="input-group input-group-sm ">
-                                    <span class="input-group-addon">Note Optionnel sous la Facture :</span> 
+                                    <span class="input-group-addon">Note Optionnelle sous la Facture :</span> 
                                     <textarea id="not-edit"  class="form-control"  rows="4" cols="70"></textarea>
                                 </div>
                             </div>

@@ -2,6 +2,11 @@ var _devise  = "";
 $(document).ready(function () {
     dispalyDevise();
     actualise_stock();
+    $("#help-comment").click(function () {
+        textHelp  = "<b>Texte ecrit :</b> <br>&lt;b&gt;Texte  gras : &lt;/b&gt; Texte Normal. &lt;br/&gt; Retour à la ligne.  <br/>"
+        textHelp  += "<b>Texte Afficher sous Pdf :</b> <br><b> Texte  en gras : </b> Texte Normal.<br/>  Retour à la ligne."
+        $.alertMsg(textHelp, 'Help')
+    })
     $("#netWeight").focusout(function(){
         console.log($("#proddetailArticleCodea").val());
         if($("#proddetailArticleCodea").val() != "" ){
@@ -210,6 +215,9 @@ function inti_dialog_non_edit(param) {
                 $(this).dialog("close");
             },
             "Imprimer": function () {
+                note = $.trim($("#not-edit").val())
+                if(note !="")
+                $("#noteafter-opt").html(note)
                 $("#printarea").printThis({
                     importCSS: true,
                     pageTitle: "Devis",
@@ -391,6 +399,7 @@ function populate_list(data) {
             reset_form();
             non_edit_mode();
             devis_mode();
+            $("#detail-invoice-before").show();
 
             $.each(data.data[0], function (index, value) {
 

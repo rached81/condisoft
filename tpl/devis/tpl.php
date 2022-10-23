@@ -136,13 +136,25 @@
                                 <th>Prix de Kg</th>
                                 <th>PU Devise</th>
                                 <th>TVA</th>
-                                <th>PTTC <span class="_devise" ></span></th>
+                                <th>PTTC <span class="_devise"></span></th>
                             </tr>
                         </thead>
                         <tbody id="dataartlineobject">
                         </tbody>
 
+                        
                     </table>
+                    <!-- START  : Note sous le Devis  -->
+                    <div class="col-md-6" id="detail-invoice-before" style="display:none">
+                            <div class="col-lg-10">
+                                <div class="input-group input-group-sm ">
+                                    <span class="input-group-addon">Note Optionnelle sous le Devis :</span>
+                                    <textarea id="not-edit" class="form-control" rows="4" cols="70"><b> Texte  en gras : </b> Texte Normal.<br/>  Retour à la ligne.</textarea>
+                                </div>
+                            </div>
+                            <button id="help-comment"class="btn btn-primary btn-sm">?</button>
+                        </div>
+                        <!-- END  : Note sous le Devis  -->
 
                 </div>
             </div>
@@ -153,7 +165,7 @@
 
 <div style="display: none">
     <div id="printarea">
-    <style>
+        <style>
             #invoice_footer,
             #invoice_footer>tr,
             #invoice_footer>tr>td {
@@ -238,8 +250,8 @@
                 color: #fff !important;
                 font-weight: bold;
                 font-size: 14px;
-                padding-bottom: 10px!important;
-                padding-top: 7px!important;
+                padding-bottom: 10px !important;
+                padding-top: 7px !important;
                 border: 1px solid #000
             }
 
@@ -250,6 +262,7 @@
             .fs14 {
                 font-size: 14px;
             }
+
             .fs16 {
                 font-size: 16px;
             }
@@ -320,18 +333,23 @@
             }
 
 
- @media print { 
-    .footer, #non-printable { display: none !important; } 
-    #printable { display: block; } 
-} 
+            @media print {
 
+                .footer,
+                #non-printable {
+                    display: none !important;
+                }
 
+                #printable {
+                    display: block;
+                }
+            }
         </style>
         <table style="width: 100%;font-size: 12px;" id="detaprotabprint">
             <thead>
                 <tr>
                     <th colspan="4">
-                        
+
 
                         <table style="width: 100%;font-size: 12px;" border=0 id="detaprotabprint">
                             <thead>
@@ -356,16 +374,16 @@
 
                                     </th>
                                     <th style="text-align:right;padding-right:20px!important;vertical-align: top!important">
- 
+
                                         <div class="dark-gris fs14 fwn" style="margin-top: 3px!important;font-family: Arial!important;padding-bottom:5px;color:#232323!important">
-                                                                                    Edité le: <span class=" fs14 fwn" style="color:#232323!important" id="prodDateDevisp"></span>
-                                            
+                                            Edité le: <span class=" fs14 fwn" style="color:#232323!important" id="prodDateDevisp"></span>
+
                                         </div>
                                     </th>
                                 </tr>
                             </thead>
                         </table>
-                           
+
                     </th>
                 </tr>
 
@@ -388,25 +406,25 @@
                 </tr>
 
                 <tr>
-                <th class="col-md-2">&nbsp;</th>
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top:3px!important;" >Code devis : <span id="prodCodeDeviBcp"></span></th>
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;" >Devise : <span id="prodDevisep"></span></th>
+                    <th class="col-md-2">&nbsp;</th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top:3px!important;">Code devis : <span id="prodCodeDeviBcp"></span></th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;">Devise : <span id="prodDevisep"></span></th>
                     <th class="col-md-2">&nbsp;</th>
                 </tr>
 
                 <tr>
-                <th class="col-md-2">&nbsp;</th>
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;" >Exercice devis : <span id="prodExerciceDevisp"></span></th>
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;" >Commercial : <span id="prodCommercialep"></span></th>
+                    <th class="col-md-2">&nbsp;</th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;">Exercice devis : <span id="prodExerciceDevisp"></span></th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;">Commercial : <span id="prodCommercialep"></span></th>
                     <th class="col-md-2">&nbsp;</th>
 
                 </tr>
 
                 <tr>
-                <th class="col-md-2">&nbsp;</th>
+                    <th class="col-md-2">&nbsp;</th>
 
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;" >Cient : <span id="prodClientp"></span></th>
-                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;" >&nbsp;</th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;">Cient : <span id="prodClientp"></span></th>
+                    <th class="col-md-4 fs16 fwn" style="padding-bottom: 5px!important;padding-top: 3px!important;">&nbsp;</th>
                     <th class="col-md-2">&nbsp;</th>
                 </tr>
 
@@ -430,7 +448,7 @@
                                     <th>Prix Kg</th>
                                     <th>Prix Art.</th>
                                     <th>TVA</th>
-                                    <th>PTTC <span class="head-span _devise" ></span></th>
+                                    <th>PTTC <span class="head-span _devise"></span></th>
                                 </tr>
                             </thead>
                             <tbody id="dataartlineobjectp">
@@ -463,9 +481,10 @@
                             </tbody>
                         </table>
 
-
+                        <div id="noteafter-opt"> </div>
                     </td>
                 </tr>
+
                 <tr>
                     <td colspan="4" class="spacingpring"></td>
                 </tr>
@@ -480,10 +499,10 @@
             </tbody>
         </table>
         <div class="footer fwn">
-            Siège Sociale: Avenue Almaghreb Alarabie Hazoua 2223, Tunisie - Tel: +216 76 440 103 Fax: +216 76 440 102 
+            Siège Sociale: Avenue Almaghreb Alarabie Hazoua 2223, Tunisie - Tel: +216 76 440 103 Fax: +216 76 440 102
             Société à responsabilité limitée (SARL)- MF: 792424A - CD: 806979E - RC: B123862002 Tribunal Tunis FLO ID: 3494
-             - ADD en qualité d'entreprise industrielle totalement exportatrice N° DCE-02-065B-1 du 25/04/2022
-             BIC: ATBKTNTT <br/>IBAN : TN59 0103 0072 1100 0097 1891 - Banque: ATB Tozeur
+            - ADD en qualité d'entreprise industrielle totalement exportatrice N° DCE-02-065B-1 du 25/04/2022
+            BIC: ATBKTNTT <br />IBAN : TN59 0103 0072 1100 0097 1891 - Banque: ATB Tozeur
 
         </div>
 
