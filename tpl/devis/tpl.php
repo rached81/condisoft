@@ -128,7 +128,7 @@
                     <table class="table table-condensed table-striped" id="detaprotab">
                         <thead>
                             <tr>
-                                <th>Code</th>
+                                <th>N°</th>
                                 <th>Désignation</th>
                                 <!-- <th>Unité</th> -->
                                 <th>Poids Net en Kg</th>

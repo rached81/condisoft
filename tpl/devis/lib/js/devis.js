@@ -462,8 +462,10 @@ function populate_list(data) {
                 console.log('w : ' + weightArticle + "  Qte : " + nbrArticle);
                 priceOneUnite = parseFloat(values.proddetailPrixUniaireDeviseDevis)/parseFloat(weightArticle);
                 priceOneUnite = sgsNumber(priceOneUnite, _devise)
+                Numero = parseInt(indexs)+1
                 var html = "<tr class='dataDet'>";
-                html += "<td id='proddetailArticleCode' class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
+                // html += "<td id='proddetailArticleCode' class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
+                html += "<td id='proddetailArticleCode'  class='itemart'>" + Numero + "</td>";
                 html += "<td >" + values.proddetailArticleCode.artDesignation + "</td>";
                 html += "<td >" + weightTotal + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart'>" + values.proddetailQteDevis + "</td>";
