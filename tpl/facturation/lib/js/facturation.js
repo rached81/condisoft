@@ -549,11 +549,11 @@ function populate_list(data) {
 
                    // $.alertMsg("Veuillez inserrer le poid de produit dans la fiche article", "Paramètre Article")
                 }
-
+                numerArticl = parseInt(indexs) + 1
 
                 var html = '<tr class="dataDet" key="prodDetailId" idval="' + values.prodDetailId + '">"';
-
-                html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
+                html += "<td id='proddetailArticleCode'  class='itemart'>" + numerArticl + "</td>";
+                // html += "<td id='proddetailArticleCode'  class='itemart'>" + values.proddetailArticleCode.artCode + "</td>";
                 html += "<td>" + values.proddetailArticleCode.artDesignation + "</td>";
                 html += "<td id='proddetailQteDevis' class='itemart' >" + values.proddetailQteDevis + "</td>";
                 html += "<td>" + productWeightImp + "</td>";
@@ -603,6 +603,9 @@ function populate_list(data) {
                 // httes = formatNumber(454.457883333 );
                 // console.log('thtva 4 : ' + httes)
                 // httvv = httes + '';
+                grossWeight = 1.05*parseFloat(totalWeight)
+                $("#totalGrossWeight").val(sgsNumber(grossWeight))
+                console.log(sgsNumber(grossWeight))
             $("#total-weight").html(sgsNumber(totalWeight));
             $("#total-nbr").html(totalQteNbr);
             $("#htva").html(sgsNumber(thtva, _devise ));

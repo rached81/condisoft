@@ -495,9 +495,9 @@
                         <table class="table table-condensed table-bordered tabprint" border=1 style="font-size: 12px;">
                             <thead class="head-table">
                                 <tr class="head-table">
-                                    <th>Code</th>
+                                    <th>N°</th>
                                     <th>Désignation</th>
-                                    <th>Nbr..    de pièces</th>
+                                    <th>Nbr. de pièces</th>
                                     <th>Poids net en Kg</th>
                                     <th>Prix unit. en &euro;</th>
                                     <th>TVA</th>
